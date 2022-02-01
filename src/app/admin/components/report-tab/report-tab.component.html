@@ -1,0 +1,63 @@
+
+<p-table
+  #dt
+  [value]="reportData"
+  [rows]="5"
+  [paginator]="true"
+  [globalFilterFields]="[
+    'username',
+    'employee.name',
+    'employee.designation',
+    'employee.location'
+  ]"
+  responsiveLayout="scroll"
+  [rowHover]="true"
+  dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [showCurrentPageReport]="true"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <h2 class="p-m-0">Report List</h2>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal(getEventValue($event), 'contains')"
+          placeholder="Search..."
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th></th>
+      <th>Sr.No.</th>
+      <th pSortableColumn="name">Name</th>
+      <th pSortableColumn="designation">Feedback</th>
+      <th pSortableColumn="location">Action Taken</th>
+    
+     
+    
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-element let-i="rowIndex">
+    <tr>
+      <td></td>
+      <td>{{ i + 1 }}</td>
+      <td>{{ element?.employeeName }}</td>
+     
+      <td>
+        {{element.feedback}} 
+        </td>
+         <td><input type="text" (change)="updateReport()" placeholder=""></td>
+    
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      In total there are {{ reportData ? reportData.length : 0 }} Employees..
+    </div>
+  </ng-template>
+</p-table>

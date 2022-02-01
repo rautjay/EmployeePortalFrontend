@@ -1,0 +1,138 @@
+<div class="card">
+    <p-tabView>
+        <p-tabPanel header="EMPLOYEE">
+            <p-table
+            #dt
+            [value]="empLeaveData"
+            [rows]="5"
+            [paginator]="true"
+            [globalFilterFields]="[
+           
+              'name',
+             
+            ]"
+            responsiveLayout="scroll"
+            [rowHover]="true"
+            dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true"
+          >
+            <ng-template pTemplate="caption">
+              <div class="p-d-flex p-ai-center p-jc-between">
+                <h2 class="p-m-0">Leave</h2>
+                <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <input
+                    pInputText
+                    type="text"
+                    (input)="dt.filterGlobal(getEventValue($event), 'contains')"
+                    placeholder="Search..."
+                  />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th></th>
+                <th>Sr.No.</th>
+                <th pSortableColumn="name">Name</th>
+                <th pSortableColumn="casual">Casual Leave</th>
+                <th pSortableColumn="annual">Annual Leave</th>
+                <th pSortableColumn="sick">Sick Leave</th>
+                <th pSortableColumn="earned">Earned Leave</th>
+                <th pSortableColumn="total">Total Leave</th>
+              
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-element let-i="rowIndex" let-j = "" >
+              <tr>
+                <td></td>
+                <td>{{ i + 1 }}</td>
+                <td>{{element.name}}</td>
+                <td>
+                  <div  *ngFor="let item of element.leavelist" >
+                      
+                        <div *ngIf="item.leavetype == 'casual'">
+                         {{item.numberOfLeave}}
+
+                        </div>
+
+                      
+                    </div>
+                    
+                </td>
+              
+                <td>3</td>
+               <td>5</td>
+                 
+                <td>4</td>
+                <td>6</td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+              <div class="p-d-flex p-ai-center p-jc-between">
+                <!-- In total there are {{ employeeData ? employeeData.length : 0 }} Employees.. -->
+              </div>
+            </ng-template>
+          </p-table>
+          
+        </p-tabPanel>
+
+    <!-- Intern Leave Table Starts From here -->
+        <p-tabPanel header="INTERN">
+          <p-table
+          #dt1
+          [value]="internLeaveData"
+          [rows]="5"
+          [paginator]="true"
+          [globalFilterFields]="[
+           
+            'name'
+           
+          ]"
+          responsiveLayout="scroll"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+        >
+          <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              <h2 class="p-m-0"> Intern Leaves</h2>
+              <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  (input)="dt1.filterGlobal(getEventValue($event), 'contains')"
+                  placeholder="Search..."
+                />
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th></th>
+              <th>Sr.No.</th>
+              <th pSortableColumn="name">Name</th>
+              <th pSortableColumn="numberofleave">No.of Leave</th>
+            
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-element let-i="rowIndex" let-j = "" >
+            <tr>
+              <td></td>
+              <td>{{ i + 1 }}</td>
+              <td>{{element.name}}</td>
+              <td>6</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              <!-- In total there are {{ employeeData ? employeeData.length : 0 }} Employees.. -->
+            </div>
+          </ng-template>
+        </p-table>
+        </p-tabPanel>
+    </p-tabView>
+</div>

@@ -52,12 +52,18 @@ export class LoginComponent implements OnInit {
             }else if(this.loginservice.getUserRole()=="EMPLOYEE")
             {
               //Employee Dashboard
-              this.router.navigate(['/auth/employee'])
-
+              console.log(this.loginservice.getUserRole())
+              this.router.navigate(['/employee'])
+              sessionStorage.setItem("empId",user.employee.id);
+               sessionStorage.setItem("loggedUser",user.employee.name);
+ 
             }else if(this.loginservice.getUserRole()=="INTERN")
             {
                 //Intern Dashboard
-                window.location.href = '/intern-dashboard';
+                this.router.navigate(['/intern'])
+                sessionStorage.setItem("empId",user.intern.id);
+                sessionStorage.setItem("loggedUser",user.intern.name);
+          
             }else{
               this.loginservice.logout();
               

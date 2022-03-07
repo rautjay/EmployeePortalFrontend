@@ -19,8 +19,8 @@
           >
             <ng-template pTemplate="caption">
               <div class="p-d-flex p-ai-center p-jc-between">
-                <h2 class="p-m-0">Leave</h2>
-                <span class="p-input-icon-left">
+                <h2 class="p-m-0">Leave
+                <span style="float: right;" class="p-input-icon-left">
                   <i class="pi pi-search"></i>
                   <input
                     pInputText
@@ -29,6 +29,7 @@
                     placeholder="Search..."
                   />
                 </span>
+              </h2>
               </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -49,25 +50,14 @@
                 <td></td>
                 <td>{{ i + 1 }}</td>
                 <td>{{element.name}}</td>
-                <td>
-                  <div  *ngFor="let item of element.leavelist" >
-                      
-                        <div *ngIf="item.leavetype == 'casual'">
-                         {{item.numberOfLeave}}
-
-                        </div>
-
-                      
-                    </div>
-                    
-                </td>
+                <td>{{element.totalCasualLeaves}}</td>
               
-                <td>3</td>
-               <td>5</td>
+                <td>7</td>
+               <td>{{element.totalSickLeaves}}</td>
                  
-                <td>4</td>
-                <td>6</td>
-              </tr>
+                <td >{{element.totalEarnedLeaves}}</td>
+                <td  >{{element.totalCasualLeaves + element.totalEarnedLeaves + element.totalSickLeaves}}</td>
+            </tr>
             </ng-template>
             <ng-template pTemplate="summary">
               <div class="p-d-flex p-ai-center p-jc-between">
@@ -98,8 +88,8 @@
         >
           <ng-template pTemplate="caption">
             <div class="p-d-flex p-ai-center p-jc-between">
-              <h2 class="p-m-0"> Intern Leaves</h2>
-              <span class="p-input-icon-left">
+              <h2 class="p-m-0"> Intern Leaves
+              <span style="float: right;" class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input
                   pInputText
@@ -108,6 +98,7 @@
                   placeholder="Search..."
                 />
               </span>
+            </h2>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
@@ -115,16 +106,20 @@
               <th></th>
               <th>Sr.No.</th>
               <th pSortableColumn="name">Name</th>
-              <th pSortableColumn="numberofleave">No.of Leave</th>
-            
+              <th>Total Leaves</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-element let-i="rowIndex" let-j = "" >
-            <tr>
+          <ng-template pTemplate="body" let-element let-i="rowIndex"  >
+            <tr  >
               <td></td>
-              <td>{{ i + 1 }}</td>
+              <td >{{ i + 1 }}</td>
+            
               <td>{{element.name}}</td>
-              <td>6</td>
+              <td >
+                {{element.totalLeave}}
+              </td>
+              
+
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">

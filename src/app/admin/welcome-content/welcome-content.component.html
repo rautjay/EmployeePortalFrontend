@@ -10,6 +10,7 @@
             [rows]="5"
     [paginator]="true"
     [globalFilterFields]="[
+    'username',
       'reason',
       'leavetype'
    
@@ -17,23 +18,22 @@
    
     [rowHover]="true"
     dataKey="id"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [showCurrentPageReport]="true"
           >
             <ng-template pTemplate="caption">
   
              
               <div class="p-d-flex p-ai-center p-jc-between">
-                <h2>Leave Requests</h2>
-                <span class="p-input-icon-left">
+                <h2>Leave Requests <span style="float: right;" class="p-input-icon-left">
                   <i class="pi pi-search"></i>
                   <input
+              
                     pInputText
                     type="text"
                     (input)="dt.filterGlobal(getEventValue($event), 'contains')"
                     placeholder="Search..."
                   />
-                </span>
+                </span></h2>
+                
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -41,6 +41,7 @@
                 <th></th>
                
                 <th>Sr.No.</th>
+                <th>Employee/Intern Id</th>
                 <th>From Date</th>
                 <th>To Date</th>
                 <th pSortableColumn="reason">Reason</th>
@@ -50,28 +51,32 @@
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-leavesData let-i = "rowIndex">
-              <tr>
+              <tr *ngIf="leavesData.grantedOption == null">
                
                  
                 <td></td>
                 
                 <td>{{i+1}}</td>
-                <td>{{ leavesData.fromDate }}</td>
-                <td>{{ leavesData.toDate }}</td>
-                <td>{{leavesData.reason}}</td>
+                <td>{{leavesData.username}}</td>
+                <td>{{ leavesData.fromDate| date: "MMMM d, y"  }}</td>
+                <td>{{ leavesData.toDate| date: "MMMM d, y"  }}</td>
+                <td>
+                  <textarea readonly cols="16" rows="2" [value]="leavesData.reason" pInputTextarea></textarea>
+                </td>
                 <td>{{ leavesData.leavetype }}</td>
                 <td >
-                  <span class="p-buttonset">
+                  <span>
                     <p-button
-                      class="leave-btn"
+                    [disabled]='leavesData.grantedOption === (leaveAccept||leaveReject)'
                       (onClick)="leaveAccepted(leavesData,leavesData.id)"
+                    
                       label="Accept"
                       icon="pi pi-check"
-                      styleClass="p-button-sm p-button-secondary"
+                      styleClass="p-button-sm"
                     ></p-button>
                     &nbsp;
                     <p-button
-                      class="leave-btn"
+                    [disabled]='leavesData.grantedOption === ( leaveReject)'
                       (onClick)="leaveRejected(leavesData,leavesData.id)"
                       label="Reject"
                       icon="pi pi-times"
@@ -222,11 +227,11 @@
 <div >
   <p-table
     styleClass="p-datatable-sm"
-    #dt
+    #dt2
     [value]="projectData"
     [rows]="5"
     [paginator]="true"
-    [globalFilterFields]="['name', 'updates', 'dos', 'doe']"
+    [globalFilterFields]="['name']"
     [rowHover]="true"
     dataKey="id"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -236,6 +241,17 @@
       <div class="p-d-flex p-ai-center p-jc-between">
         <h2 class="p-m-0">
           Project Details
+
+          <span class="p-input-icon-left ml10">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt2.filterGlobal(getEventValue($event), 'contains')"
+              placeholder="Search..."
+              class="p-inputtext-sm"
+            />
+          </span>
           <button
             [style]="{ float: 'right' }"
             pButton
@@ -305,13 +321,28 @@
 
    <p-table
    [value]="billsData"
+   [rows]="5"
+   [paginator]="true"
    styleClass="p-datatable-sm"
    responsiveLayout="scroll"
+   [globalFilterFields]="['filename']"
+   [rowHover]="true"
+   dataKey="id"
+   #dt3
  >
 
    <ng-template pTemplate="caption">
      <h2>Bills
-
+      <span class="p-input-icon-left ml10">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal(getEventValue($event), 'contains')"
+          placeholder="Search..."
+          class="p-inputtext-sm"
+        />
+        </span>
       <button
       [style]="{ float: 'right' }"
       pButton
@@ -343,7 +374,7 @@
        <td>{{i+1}}</td>
        <td> {{ billsData.amount}}</td>
        <td> {{billsData.filename}}</td>
-       <td> 
+       <td [ngStyle]="{display:'flex',alignItems:'center',justifyContent:'space-between'}"> 
         <span>{{ billsData.filename}} </span>           
         <button
         pButton

@@ -1,0 +1,118 @@
+<div class="app-container">
+  <div class="navv">
+    <p-toolbar styleClass="app-toolbar">
+      <div class="p-toolbar-group-left" class="p-toolbar-group-left">
+        <img src="\assets\AnemoiLogo.jfif" alt="" class="logo" />
+        <h2>ANEMOI TECHNOLOGIES</h2>
+
+        &nbsp;
+      </div>
+      <button
+        pButton
+        class="p-button-secondary"
+        (click)="snav = true"
+        icon="pi pi-bars"
+      ></button>
+    </p-toolbar>
+  </div>
+
+  <p-sidebar
+    styleClass="sidebar"
+    class="app-sidenav-container"
+    [(visible)]="snav"
+  >
+    <div class="menuItem">
+      <div>
+        <div class="container">
+          <img
+            src="{{ 'data:image/jpg;base64,' + profilePic }}"
+            onerror="this.src='https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'"
+            alt=""
+            class="profile-image"
+          />
+
+          <p-fileUpload
+            class="btn"
+            [customUpload]="true"
+            (onSelect)="uploadFile()"
+            (uploadHandler)="onUpload($event)"
+            mode="basic"
+          ></p-fileUpload>
+        </div>
+
+        <h3 style="color: rgba(221, 26, 68)">Welcome,{{ username }}</h3>
+      </div>
+
+      <hr />
+      <h3>
+        <i class="pi pi-users" style="font-size: 20px"></i> &nbsp;<a
+          [routerLink]="['/employee/dashboard']"
+          (click)="snav = false"
+          >Dashboard</a
+        >
+      </h3>
+      <hr />
+      <h3>
+        <i class="pi pi-users" style="font-size: 20px"></i> &nbsp;<a
+          [routerLink]="['/employee/employees']"
+          (click)="snav = false"
+          >Employee</a
+        >
+      </h3>
+      <hr />
+      <h3>
+        <i class="pi pi-briefcase" style="font-size: 20px"></i> &nbsp;<a
+          [routerLink]="['/employee/intern']"
+          (click)="snav = false"
+          >Intern</a
+        >
+      </h3>
+      <hr />
+      <h3>
+        <i class="pi pi-briefcase" style="font-size: 20px"></i> &nbsp;<a
+          [routerLink]="['/employee/projects']"
+          (click)="snav = false"
+          >Projects</a
+        >
+      </h3>
+      <hr />
+      <h3>
+        <i class="pi pi-briefcase" style="font-size: 20px"></i> &nbsp;<a
+          [routerLink]="['/employee/leave']"
+          (click)="snav = false"
+          >Leave</a
+        >
+      </h3>
+      <hr />
+      <h3>
+        <i class="pi pi-briefcase" style="font-size: 20px"></i> &nbsp;<a
+        [routerLink]="['/employee/report']"
+          (click)="snav = false"
+          >Feedback</a
+        >
+      </h3>
+      <hr />
+      <h3>
+        <i class="pi pi-briefcase" style="font-size: 20px"></i> &nbsp;<a
+          (click)="snav = false"
+          >Policies</a
+        >
+      </h3>
+      <hr />
+
+      
+      <h3>
+        <i class="pi pi-briefcase" style="font-size: 20px"></i> &nbsp;<a
+          (click)="logout()"
+          [routerLink]="['/auth']"
+          >Sign out</a
+        >
+      </h3>
+      <hr />
+    </div>
+  </p-sidebar>
+
+  <div class="router-outlet-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

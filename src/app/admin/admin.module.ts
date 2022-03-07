@@ -10,6 +10,9 @@ import { InternTabComponent } from './components/intern-tab/intern-tab.component
 import { ProjectsTabComponent } from './components/projects-tab/projects-tab.component';
 import { LeaveTabComponent } from './components/leave-tab/leave-tab.component';
 import { ReportTabComponent } from './components/report-tab/report-tab.component';
+import { DateofjoingTabComponent } from './components/dateofjoing-tab/dateofjoing-tab.component';
+import { DocumentationTabComponent } from './components/documentation-tab/documentation-tab.component';
+import { ReviewTabComponent } from './components/review-tab/review-tab.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,10 @@ import { ReportTabComponent } from './components/report-tab/report-tab.component
     ProjectsTabComponent,
     LeaveTabComponent,
     ReportTabComponent,
+    DateofjoingTabComponent,
+    DocumentationTabComponent,
+    ReviewTabComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -57,6 +64,18 @@ import { ReportTabComponent } from './components/report-tab/report-tab.component
           {
             path: 'report',
             component: ReportTabComponent,
+          },
+          {
+            path: 'joiningdate',
+            component: DateofjoingTabComponent,
+          },
+          {
+            path: 'documents',
+            component: DocumentationTabComponent,
+          },
+          {
+            path: 'review',
+            component: ReviewTabComponent,
           },
         ],
       },

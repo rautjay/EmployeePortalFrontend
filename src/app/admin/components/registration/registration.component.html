@@ -1,173 +1,388 @@
-<div class="bootstrap-wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3 mt20">
-        <p-card class="text-center" header="Register Here!!!">
-          <hr />
-          <form (ngSubmit)="formSubmit()">
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-user"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="text"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.employee.name"
-                    name="name"
-                  />
-                  <label for="inputgroup">Enter Name</label>
-                </span>
-              </div>
-            </div>
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-phone"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="text"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.employee.mobile"
-                    name="mobile"
-                  />
-                  <label for="inputgroup">Enter Mobile Number</label>
-                </span>
-              </div>
-            </div>
-
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-envelope"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="text"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.employee.email"
-                    name="email"
-                  />
-                  <label for="inputgroup">Enter Email Id</label>
-                </span>
-              </div>
-            </div>
-
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-id-card"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="text"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.username"
-                    name="username"
-                  />
-                  <label for="inputgroup">Enter Employee Id</label>
-                </span>
-              </div>
-            </div>
-
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-key"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="password"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.password"
-                    name="password"
-                  />
-                  <label for="inputgroup">Enter password</label>
-                </span>
-              </div>
-            </div>
-
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-users"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="text"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.employee.designation"
-                    name="designation"
-                  />
-                  <label for="inputgroup">Enter Employee Designation</label>
-                </span>
-              </div>
-            </div>
-
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-id-card"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="text"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.employee.department"
-                    name="department"
-                  />
-                  <label for="inputgroup">Enter Employee Department</label>
-                </span>
-              </div>
-            </div>
-
-            <div class="p-field p-col-12 p-md-4 mt40">
-              <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">
-                  <i class="pi pi-map-marker"></i>
-                </span>
-                <span class="p-float-label">
-                  <input
-                    type="text"
-                    id="inputgroup"
-                    pInputText
-                    [(ngModel)]="user.employee.location"
-                    name="location"
-                  />
-                  <label for="inputgroup">Enter Base/Location</label>
-                </span>
-              </div>
-            </div>
 
 
-            <div class="mt20 text-center">
-              <button
-                pButton
-                pRipple
-                type="submit"
-                label="Register"
-                class="p-button-success"
-              ></button>
-              <button
-                pButton
-                pRipple
-                type="reset"
-                label="Reset"
-                class="p-button-raised ml20"
-              ></button>
+
+<div class="card">
+
+  <p-tabView styleClass="tabview-custom">
+      <p-tabPanel>
+        <ng-template pTemplate="header">
+          <i style="color: rgba(221, 26, 68)" class="pi pi-calendar"></i>
+          <span style="color: rgb(221, 26, 68); margin-left: 4px">EMPLOYEE</span>
+        </ng-template>
+          <div class="bootstrap-wrapper">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 offset-md-3 mt20">
+                  <p-card class="text-center" [style]="{'background-color': '#e2e2e2'}" header="Register Here!!!">
+                    <hr />
+                    <form (ngSubmit)="formSubmit()">
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i  class="pi pi-user" ></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="text"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.employee.name"
+                              name="name"
+                            />
+                            <label for="inputgroup">Enter Name</label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i class="pi pi-phone"></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="text"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.employee.mobile"
+                              name="mobile"
+                            />
+                            <label for="inputgroup">Enter Mobile Number</label>
+                          </span>
+                        </div>
+                      </div>
+          
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i class="pi pi-envelope"></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="text"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.employee.email"
+                              name="email"
+                            />
+                            <label for="inputgroup">Enter Email Id</label>
+                          </span>
+                        </div>
+                      </div>
+          
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i class="pi pi-id-card"></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="text"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.username"
+                              name="username"
+                            />
+                            <label for="inputgroup">Enter Employee Id</label>
+                          </span>
+                        </div>
+                      </div>
+          
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i class="pi pi-key"></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="password"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.password"
+                              name="password"
+                            />
+                            <label for="inputgroup">Enter password</label>
+                          </span>
+                        </div>
+                      </div>
+          
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i class="pi pi-users"></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="text"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.employee.designation"
+                              name="designation"
+                            />
+                            <label for="inputgroup">Enter Employee Designation</label>
+                          </span>
+                        </div>
+                      </div>
+          
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i class="pi pi-id-card"></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="text"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.employee.department"
+                              name="department"
+                            />
+                            <label for="inputgroup">Enter Employee Department</label>
+                          </span>
+                        </div>
+                      </div>
+          
+                      <div class="p-field p-col-12 p-md-4 mt40">
+                        <div class="p-inputgroup">
+                          <span class="p-inputgroup-addon custom-color">
+                            <i class="pi pi-map-marker"></i>
+                          </span>
+                          <span class="p-float-label">
+                            <input
+                              type="text"
+                              id="inputgroup"
+                              pInputText
+                              [(ngModel)]="user.employee.location"
+                              name="location"
+                            />
+                            <label for="inputgroup">Enter Base/Location</label>
+                          </span>
+                        </div>
+                      </div>
+          
+          
+                      <div class="mt20 text-center">
+                        <button
+                          pButton
+                          pRipple
+                          type="submit"
+                          label="Register"
+                          class="p-button-success"
+                        ></button>
+                        <button
+                          pButton
+                          pRipple
+                          type="reset"
+                          label="Reset"
+                          class="p-button-raised ml20"
+                        ></button>
+                      </div>
+                    </form>
+                  </p-card>
+                </div>
+              </div>
             </div>
-          </form>
-        </p-card>
-      </div>
-    </div>
+          </div>
+      </p-tabPanel>
+
+      <!-- for interns registration -->
+      <p-tabPanel header="Header II">
+        <ng-template pTemplate="header">
+          <i style="color: rgb(221, 26, 68)" class="pi pi-user"></i>
+          <span style="color: rgb(221, 26, 68); margin-left: 4px">INTERN</span>
+        </ng-template>
+        <div class="bootstrap-wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 offset-md-3 mt20">
+                <p-card class="text-center" [style]="{'background-color': '#e2e2e2'}" header="Register Here!!!">
+                  <hr />
+                  <form (ngSubmit)="formSubmitIntern()">
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i  class="pi pi-user" ></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.intern.name"
+                            name="name"
+                          />
+                          <label for="inputgroup">Enter Name</label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-phone"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.intern.mobile"
+                            name="mobile"
+                          />
+                          <label for="inputgroup">Enter Mobile Number</label>
+                        </span>
+                      </div>
+                    </div>
+        
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-envelope"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.intern.email"
+                            name="email"
+                          />
+                          <label for="inputgroup">Enter Email Id</label>
+                        </span>
+                      </div>
+                    </div>
+        
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-id-card"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                        [(ngModel)]="user1.username"
+                            name="username"
+                          />
+                          <label for="inputgroup">Enter Intern Id</label>
+                        </span>
+                      </div>
+                    </div>
+        
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-key"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="password"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.password"
+                            name="password"
+                          />
+                          <label for="inputgroup">Enter password</label>
+                        </span>
+                      </div>
+                    </div>
+        
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-users"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.intern.projectname"
+                            name="designation"
+                          />
+                          <label for="inputgroup">Enter intern project name</label>
+                        </span>
+                      </div>
+                    </div>
+        
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-id-card"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.intern.mentor"
+                            name="department"
+                          />
+                          <label for="inputgroup">Enter intern mentor</label>
+                        </span>
+                      </div>
+                    </div>
+        
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-map-marker"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.intern.location"
+                            name="location"
+                          />
+                          <label for="inputgroup">Enter Base/Location</label>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="p-field p-col-12 p-md-4 mt40">
+                      <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon custom-color">
+                          <i class="pi pi-map-marker"></i>
+                        </span>
+                        <span class="p-float-label">
+                          <input
+                            type="text"
+                            id="inputgroup"
+                            pInputText
+                            [(ngModel)]="user1.intern.address"
+                            name="address"
+                          />
+                          <label for="inputgroup">Enter Address</label>
+                        </span>
+                      </div>
+                    </div>
+        
+        
+                    <div class="mt20 text-center">
+                      <button
+                        pButton
+                        pRipple
+                        type="submit"
+                        label="Register"
+                        class="p-button-success"
+                      ></button>
+                      <button
+                        pButton
+                        pRipple
+                        type="reset"
+                        label="Reset"
+                        class="p-button-raised ml20"
+                      ></button>
+                    </div>
+                  </form>
+                </p-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+     
+  </p-tabView>
   </div>
-</div>
+  

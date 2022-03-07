@@ -1,0 +1,217 @@
+<!-- project Table starts  from here -->
+<!-- Dialog box to add Client -->
+<p-dialog
+  [(visible)]="projectDialogue"
+  [style]="{ width: '800px' }"
+  header="PROJECT DETAILS"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="row">
+         <div class="col-md-6">
+          <div class="p-field">
+            <label for="name">Name Of Project</label>
+            <input
+                class="mt10"
+              type="text"
+              pInputText
+              id="name"
+              [(ngModel)]="project.name"
+              required
+              autofocus
+              readonly
+            />
+            <div class="p-field mt20">
+              <label for="dos">Date Of Starting</label>
+              <input
+              class="mt10"
+                type="text"
+                pInputText
+                id="dos"
+                [(ngModel)]="project.dateOfStarting"
+                required
+                autofocus
+                readonly
+              />
+            </div>
+
+            <div class="p-field mt20">
+              <label for="mentor">Mentor</label>
+              <input
+              class="mt10"
+                type="text"
+                pInputText
+                id="mentor"
+                [(ngModel)]="project.mentor"
+                required
+                autofocus
+                readonly
+              />
+            </div>
+          </div>
+
+         </div>
+
+         <div class="col-md-6">
+          <div class="p-field">
+            <label for="promanager">Project Manager</label>
+            <input
+            class="mt10"
+              type="text"
+              pInputText
+              id="promanager"
+              [(ngModel)]="project.projectManager"
+              required
+              autofocus
+              readonly
+            />
+            <div class="p-field mt20">
+              <label for="doe">Date Of Submission</label>
+              <input
+              class="mt10"
+                type="text"
+                pInputText
+                id="doe"
+                [(ngModel)]="project.dateOfSubmission"
+                required
+                autofocus
+                readonly
+              />
+
+              <div class="p-field mt20">
+                <label for="intern">Intern</label>
+                <input
+                class="mt10"
+                  type="text"
+                  pInputText
+                  id="intern"
+                  [(ngModel)]="project.intern"
+                  required
+                  autofocus
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+         </div>
+
+        </div>
+        <div class="p-field mt20">
+          <label for="updates">Updates</label>
+          <textarea
+          pInputTextarea
+          rows="2"
+          cols="20"
+          class="mt10"
+            type="text"
+           
+            id="updates"
+            [(ngModel)]="project.updates"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+   
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveClient()"
+    ></button>
+    <!-- <button type="button" pButton pRipple (click)="showSuccess()" label="Success" class="p-button-success"></button> -->
+  </ng-template>
+</p-dialog>
+<p-toast></p-toast>
+
+<!-- Table to show project data -->
+<div >
+  <p-table
+    styleClass="p-datatable-sm"
+    #dt
+    [value]="projectData"
+    [rows]="5"
+    [paginator]="true"
+    [globalFilterFields]="['name', 'updates', 'dos', 'doe']"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        <h2 class="p-m-0">
+          Project Details
+          <span style="float: right;"  class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal(getEventValue($event), 'contains')"
+              placeholder="Search..."
+              class="p-inputtext"
+            />
+          </span>
+        </h2>
+       
+        
+       
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th ></th>
+                  <th>Sr.No.</th>
+        <th pSortableColumn="name">Project</th>
+
+        <th pSortableColumn="upadtes">Updates</th>
+        <th pSortableColumn="dos">Date Of Starting</th>
+        <th pSortableColumn="doe">Date Of Ending</th>
+        <th>Action's</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-project1 let-i ="rowIndex">
+      <tr>
+          <td></td>
+        <td>{{i+1}}</td>
+        <td>{{ project1.name }}</td>
+        <td>{{ project1.updates }}</td>
+        <td>{{ project1.dateOfStarting }}</td>
+        <td>{{ project1.dateOfSubmission }}</td>
+
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            (click)="editClient(project1)"
+            class="p-button-rounded p-button-success p-mr-2"
+          ></button>
+         
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between" style="color:purple;">
+        In total there are {{ projectData ? projectData.length : 0 }} projects
+      </div>
+    </ng-template>
+  </p-table>
+  </div>

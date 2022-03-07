@@ -33,4 +33,6 @@ export class UserService {
     return this.http.get(`${environment.baseUrl}/user/${id}`)
 
    }
+
+   
 }

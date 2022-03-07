@@ -9,7 +9,13 @@ export interface Intern{
           mobile?:number,
           email?:string,
           projectname?:string,
-          userId:any
+          doj:Date,
+          dol:Date;
+          fileName:string,
+          review:string,
+          username:string,
+          actionTaken:string,
+          profilePic:string
          
 
       
@@ -38,7 +44,8 @@ export interface Intern{
 export interface InternLeave{
     id?:number,
     name?:string,
-    leavelist:[{
+    totalLeave?:number,
+    leaveList?:[{
         name?:string,
         numberOfLeave?:number,
         fromDate:Date,
@@ -51,3 +58,4 @@ export interface InternLeave{
 
 
 }
+

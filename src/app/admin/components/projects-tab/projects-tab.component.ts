@@ -124,4 +124,9 @@ export class ProjectsTabComponent implements OnInit {
     });
   }
 
+    //for searching
+    getEventValue($event: any): string {
+      return $event.target.value;
+    }
+
 }

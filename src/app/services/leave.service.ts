@@ -34,5 +34,20 @@ export class LeaveService {
       return this.http.get(`${environment.baseUrl}/leave/${leaveId}`);
    }
 
+   addLeaveToEmployee(data:any,id:any)
+   {
+     return this.http.post(`${environment.baseUrl}/leave/${id}`,data)
+   }
+  
+   deleteLeave(id:any)
+   {
+     return this.http.delete(`${environment.baseUrl}/leave/${id}`)
+   }
+
+   addLeaveToIntern(data:any,id:any)
+   {
+     return this.http.post(`${environment.baseUrl}/leave/intern/${id}`,data)
+   }
+
 
 }

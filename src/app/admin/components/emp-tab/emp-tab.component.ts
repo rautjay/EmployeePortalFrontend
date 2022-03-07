@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { documents } from 'src/app/model/documents';
 import { Employee } from 'src/app/model/Employee';
+import { DocumentsService } from 'src/app/services/documents.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import Swal from 'sweetalert2';
+import { saveAs } from 'file-saver';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-emp-tab',
@@ -18,11 +22,11 @@ export class EmpTabComponent implements OnInit {
   empDetails=false;
   checked1: boolean = true;
   loader: boolean = true;
-
+  documents:documents[];
   submitted?: boolean;
   employeeDialogue?: boolean;
 
-  constructor(private empService:EmployeeService,private messageService:MessageService) { }
+  constructor(private empService:EmployeeService,private messageService:MessageService, private docsService:DocumentsService) { }
 
   ngOnInit(): void {
       
@@ -100,6 +104,11 @@ export class EmpTabComponent implements OnInit {
     // this.submitted=false;
     this.employeeDialogue = true;
     console.log("intern:" + employee);
+
+    
+    this.empService.getEmployee(this.employee.id).subscribe((data:any)=>{
+      this.documents = data.documents;
+    })
   }
 
   hideDialog() {
@@ -107,6 +116,16 @@ export class EmpTabComponent implements OnInit {
     this.submitted = false;
   }
 
+  downloadFile(filename: string): void {
+    this.docsService.download(filename).subscribe((event) => {
+      saveAs(event, filename);
+    });
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    };
+  }
+
+   
 
 }
 

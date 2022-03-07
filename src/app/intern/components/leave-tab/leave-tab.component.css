@@ -1,0 +1,5 @@
+:host ::ng-deep .sizes .p-button-sm {
+    background-color: rgba(221, 26, 68);
+    margin-top: 20px;
+    margin: 3px;
+}

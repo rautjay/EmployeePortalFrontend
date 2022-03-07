@@ -11,6 +11,7 @@ export class WelcomeComponent implements OnInit {
 
   menus : Menu[] = [];
   snav!:boolean;
+  
 
   constructor(private router:Router) {
     this.menus = [];
@@ -23,6 +24,8 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {
     this.router.navigate(['/admin/welContent']);
     // this.onMenuClick(this.menus[0]);
+      
+
   }
 
   onMenuClick(menu: Menu){

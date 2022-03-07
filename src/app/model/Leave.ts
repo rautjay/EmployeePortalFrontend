@@ -8,11 +8,13 @@ export interface Leave{
      numberOfLeave?:string;
     fromDate?:Date;
     toDate?:Date;
-     leavetype?:string;
+     leavetype?:any;
     reason?:string;
     comment?:string;
     grantedOption?:string,
-    employeeId?:number
+    employeeId?:number,
+    username?:string,
+    isDisable?:boolean
         
     }
 

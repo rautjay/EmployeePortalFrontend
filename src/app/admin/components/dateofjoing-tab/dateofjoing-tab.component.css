@@ -1,0 +1,11 @@
+::ng-deep 
+    p-calender  table td {
+          color: brown !important;
+    }
+
+    
+
+ 
+.p-fluid{
+      color: blueviolet;
+   }

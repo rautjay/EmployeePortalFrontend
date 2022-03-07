@@ -16,14 +16,24 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
-import {FileUploadModule} from 'primeng/fileupload';
+
 import {PanelModule} from 'primeng/panel';
 import {AccordionModule} from 'primeng/accordion';
 import {TabViewModule} from 'primeng/tabview';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {CalendarModule} from 'primeng/calendar';
+
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 import {FieldsetModule} from 'primeng/fieldset';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {FileUploadModule} from 'primeng/fileupload';
+import {ImageModule} from 'primeng/image';
+import {ListboxModule} from 'primeng/listbox';
+import {DropdownModule} from 'primeng/dropdown';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
+import {DividerModule} from 'primeng/divider';
 
 
 
@@ -53,7 +63,17 @@ import {FieldsetModule} from 'primeng/fieldset';
     FieldsetModule,
     AccordionModule,
     TabViewModule,
-    InputNumberModule
+    InputNumberModule,
+    CalendarModule,
+    OverlayPanelModule,
+    InputTextareaModule,
+    FileUploadModule,
+    ImageModule,
+    ListboxModule,
+    DropdownModule,
+    DividerModule
+    
+ 
 
 
     
@@ -85,7 +105,16 @@ import {FieldsetModule} from 'primeng/fieldset';
     FieldsetModule,
     AccordionModule,
     TabViewModule,
-    InputNumberModule
+    InputNumberModule,
+    CalendarModule,
+    OverlayPanelModule,
+    InputTextareaModule,
+    FileUploadModule,
+    ImageModule,
+    ListboxModule,
+    DropdownModule,
+    DynamicDialogModule,
+    DividerModule
     
   ]
 })

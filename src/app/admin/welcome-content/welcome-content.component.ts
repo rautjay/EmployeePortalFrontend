@@ -26,7 +26,10 @@ import { saveAs } from 'file-saver';
 export class WelcomeContentComponent implements OnInit {
   leavesData!: Leave[];
   leave!: Leave;
-  singleLeave:any;
+  singleLeave: any;
+   visible = false;
+   leaveAccept="Accepted";
+   leaveReject = "Rejected";
 
   //for Bills Table
   selectedFiles?: FileList;
@@ -65,6 +68,7 @@ export class WelcomeContentComponent implements OnInit {
     //fetching data from leave for leave table
     this.leaveService.getAll().subscribe((data: any) => {
       this.leavesData = data;
+      this.leavesData.reverse();
       console.log(data);
     });
 
@@ -81,7 +85,8 @@ export class WelcomeContentComponent implements OnInit {
     });
   }
   //After Click on Accept Button
-  leaveAccepted(leave: Leave,id:any) {
+  leaveAccepted(leave: Leave, id: any) {
+   
     Swal.fire({
       title: 'Do you want to save the changes?',
       showDenyButton: true,
@@ -94,14 +99,17 @@ export class WelcomeContentComponent implements OnInit {
 
         //updatating granted optiion logic
         this.leave = { ...leave };
-            
-          this.leave.grantedOption = 'Accepted';
-        this.leave.comment = '';
+
+        this.leave.grantedOption = 'Accepted';
+        this.leave.comment = 'Accepted';
         
         if (this.leave.id) {
+    
+
           this.leaveService
-            .updateLeave(id, this.leave,this.leave.employeeId)
+            .updateLeave(id, this.leave, this.leave.employeeId)
             .subscribe((result) => {
+        
               console.log('status' + result);
               this.ngOnInit();
             });
@@ -112,10 +120,13 @@ export class WelcomeContentComponent implements OnInit {
     });
   }
 
+  //for disable button
+
+
   //for rejecting leave
-  leaveRejected(leave: Leave,id:any) {
+  leaveRejected(leave: Leave, id: any) {
     console.log(id);
-    
+
     Swal.fire({
       title: 'Do you want to reject the leave request?',
       showDenyButton: true,
@@ -128,19 +139,16 @@ export class WelcomeContentComponent implements OnInit {
 
         //updatating granted optiion logic
         this.leave = { ...leave };
-      console.log(  
-      this.leave.employeeId);
-      this.leave.grantedOption = "Rejected";
+        console.log(this.leave.employeeId);
+        this.leave.grantedOption = 'Rejected';
         // this.leaveService.getLeave(id).subscribe((data)=>{
         //   this.singleLeave = data;
         //   this.singleLeave.grantedOption = "Rejected";
         // })
 
-             
-       
         if (this.leave.id) {
           this.leaveService
-            .updateLeave(id, this.leave,this.leave.employeeId)
+            .updateLeave(id, this.leave, this.leave.employeeId)
             .subscribe((result) => {
               console.log('status' + result);
               this.ngOnInit();
@@ -256,22 +264,21 @@ export class WelcomeContentComponent implements OnInit {
 
   uploadFile(): void {
     this.errorMsg = '';
-    const amount:Bills|null=this.bill
+    const amount: Bills | null = this.bill;
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
- 
 
       if (file && amount) {
         this.currentFile = file;
 
-        this.billService.upload(this.currentFile,amount).subscribe(
+        this.billService.upload(this.currentFile, amount).subscribe(
           (event: any) => {
             this.ngOnInit();
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Bill Added Successfully',
-        });
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Bill Added Successfully',
+            });
           },
           (err: any) => {
             console.log(err);
@@ -291,17 +298,13 @@ export class WelcomeContentComponent implements OnInit {
   }
 
   downloadFile(filename: string): void {
-    this.billService.download(filename).subscribe((event) =>{
-      saveAs(event,filename);
-
+    this.billService.download(filename).subscribe((event) => {
+      saveAs(event, filename);
     });
- (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-  
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    };
   }
-
-
 
   //for Adding bill
   addBill() {
@@ -330,9 +333,8 @@ export class WelcomeContentComponent implements OnInit {
   }
 
   //for searching
-  //for searching 
-  getEventValue($event:any) :string {
+  //for searching
+  getEventValue($event: any): string {
     return $event.target.value;
-  } 
+  }
 }
-

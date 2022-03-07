@@ -1,0 +1,345 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 mt20">
+          <p-card>
+            <div style="background-color: gray; border-radius: 10px">
+              <div class="row">
+                <img
+                src="{{ 'data:image/jpg;base64,' + profilePic }}"
+                  onerror="this.src='https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'"
+                  alt=""
+                  class="profile-image"
+                />
+  
+                <h1 style="color: white; margin-left: 10px">Profile Details!!</h1>
+              </div>
+            </div>
+            <form (ngSubmit)="formSubmit(intern)">
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-user"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.name"
+                      name="name"
+                    />
+                    <label for="inputgroup">Enter Name</label>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-phone"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.mobile"
+                      name="mobile"
+                    />
+                    <label for="inputgroup">Enter Mobile Number</label>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-envelope"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.email"
+                      name="email"
+                    />
+                    <label for="inputgroup">Enter Email Id</label>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-id-card"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <textarea
+                      name=""
+                      id=""
+                      cols="30"
+                      rows="2"
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.address"
+                      name="perAddress"
+                    >
+                    </textarea>
+                    <label for="inputgroup">Enter Permanent Address</label>
+                  </span>
+                </div>
+              </div>
+  
+              <!-- <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-id-card"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <textarea
+                      name=""
+                      id=""
+                      cols="30"
+                      rows="2"
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="employee.currentAddress"
+                      name="currAddress"
+                    >
+                    </textarea>
+                    <label for="inputgroup">Enter Current Address</label>
+                  </span>
+                </div>
+              </div> -->
+  
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-id-card"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.username"
+                      name="username"
+                      readonly
+                    />
+                    <label for="inputgroup">Enter Employee Id</label>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-users"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.mentor"
+                      name="designation"
+                      readonly
+                    />
+                    <label for="inputgroup">Mentor Name</label>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="p-field p-col-12 p-md-4 mt40" hidden>
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-id-card"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.projectname"
+                      name="department"
+                    />
+                    <label for="inputgroup">Enter Employee Department</label>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-map-marker"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.location"
+                      name="location"
+                      readonly
+                    />
+                    <label for="inputgroup">Enter Base/Location</label>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-calendar-plus"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.doj"
+                      name="doj"
+                      readonly
+                    />
+                    <label for="inputgroup">Date Of Joining</label>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-calendar-plus"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      [(ngModel)]="intern.dol"
+                      name="dol"
+                      readonly
+                    />
+                    <label for="inputgroup">Date Of Ending</label>
+                  </span>
+                </div>
+              </div>
+  
+              <div class="mt20 text-center">
+                <button
+                  pButton
+                  pRipple
+                  type="submit"
+                  label="Edit"
+                  class="p-button-success"
+                ></button>
+              </div>
+            </form>
+          </p-card>
+        </div>
+  
+        <div class="col-md-5 mt20">
+          <p-card header="Documentation!!">
+            <div>
+              <label for="dos"
+                ><strong style="color: rgba(221, 26, 68)">Resume</strong></label
+              >
+              <hr />
+              <div class="p-inputgroup">
+                <input
+                  class="mt10"
+                  type="file"
+                  pInputText
+                  id="dos"
+                  required
+                  autofocus
+                  (change)="selectFile($event)"
+                />
+  
+                <button
+                  pButton
+                  pRipple
+                  label="Upload"
+                  icon="pi pi-upload"
+                  class="p-button-text"
+                  (click)="uploadFile()"
+                ></button>
+              </div>
+            </div>
+  
+            <div class="mt40">
+              <label for="dos"
+                ><strong style="color: rgba(221, 26, 68)"
+                  >Personal Identification</strong
+                ></label
+              >
+              <hr />
+  
+              <div class="p-inputgroup">
+                <input
+                  class="mt10"
+                  type="file"
+                  pInputText
+                  id="dos1"
+                  required
+                  autofocus
+                  (change)="selectFile($event)"
+                />
+  
+                <button
+                  pButton
+                  pRipple
+                  label="Upload"
+                  icon="pi pi-upload"
+                  class="p-button-text"
+                  (click)="uploadFile()"
+                ></button>
+              </div>
+            </div>
+  
+            <div class="mt40">
+              <label for="dos"
+                ><strong style="color: rgba(221, 26, 68)"
+                  >Official Documents</strong
+                ></label
+              >
+              <hr />
+              <div class="p-inputgroup">
+                <input
+                  class="mt10"
+                  type="text"
+                  pInputText
+                  id="dos2"
+                  required
+                  autofocus
+                  value="{{ intern.fileName }}"
+                  readonly
+                />
+  
+                <button
+                  pButton
+                  pRipple
+                  label="Download"
+                  icon="pi pi-download"
+                  class="p-button-text"
+                  (click)="downloadFile(intern.fileName)"
+                ></button>
+              </div>
+            </div>
+          </p-card>
+          <div class="mt20">
+            <p-card header=" Uploaded Documents!!">
+              <ul *ngFor="let item of documents">
+                <li>{{ item.filename }}</li>
+              </ul>
+            </p-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

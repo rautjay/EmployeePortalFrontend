@@ -71,4 +71,6 @@ public getUserRole()
   return user.authorities[0].authority;
 }
 
+
+
 }

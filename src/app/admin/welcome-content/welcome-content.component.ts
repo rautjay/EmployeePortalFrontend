@@ -21,6 +21,7 @@ import { saveAs } from 'file-saver';
   selector: 'app-welcome-content',
   templateUrl: './welcome-content.component.html',
   styleUrls: ['./welcome-content.component.css'],
+
   providers: [MessageService],
 })
 export class WelcomeContentComponent implements OnInit {
@@ -226,6 +227,10 @@ export class WelcomeContentComponent implements OnInit {
     // this.submitted=false;
     this.projectDialogue = true;
     console.log('Project:' + project);
+    if(this.project.dateOfStarting)
+    this.project.dateOfStarting = new Date (this.project.dateOfStarting);
+    if(this.project.dateOfSubmission)
+    this.project.dateOfSubmission = new Date (this.project.dateOfSubmission);
   }
 
   deleteClient(id: number) {
@@ -264,22 +269,20 @@ export class WelcomeContentComponent implements OnInit {
 
   uploadFile(): void {
     this.errorMsg = '';
-    const amount: Bills | null = this.bill;
+    const bill: Bills | null = this.bill;
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
-      if (file && amount) {
+      if (file && bill) {
         this.currentFile = file;
-
-        this.billService.upload(this.currentFile, amount).subscribe(
-          (event: any) => {
-            this.ngOnInit();
+;
+             this.billsDialogue = false;
             this.messageService.add({
               severity: 'success',
               summary: 'Success',
               detail: 'Bill Added Successfully',
             });
-          },
+       
           (err: any) => {
             console.log(err);
             // if (err.error && err.error.responseMessage) {
@@ -290,7 +293,7 @@ export class WelcomeContentComponent implements OnInit {
 
             this.currentFile = undefined;
           }
-        );
+        
       }
 
       this.selectedFiles = undefined;

@@ -9,10 +9,25 @@
   }
 
   .custom-color{
-    background-color: rgb(172, 165, 166);
-    color: rgb(10, 235, 255);
+    background-color: #ffffffe7;
+    color: #bb508ee7;
 }
 
 .row{
   margin-left: 0px;
 }
+
+:host ::ng-deep p-card .custom-card{
+  
+  background-color: #bb508ee7;
+  color: white;
+ 
+}
+
+:host ::ng-deep p-card  .p-inputgroup  label {
+  
+ 
+  color: rgb(102, 95, 95)!important ;
+ 
+} 
+

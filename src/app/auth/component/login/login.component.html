@@ -1,19 +1,21 @@
 
 <app-navbar></app-navbar>
+<div class="section">
 
+    
 <div class="bootstrap-wrapper">
     <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3 mt40">
-             <p-card class="text-center" header="Login Here!!!">
+             <p-card styleClass="custom-card" class="text-center" header="Login Here!!!">
                  <hr>
              <form (ngSubmit)="formSubmit()" >
                 <div class="p-field p-col-12 p-md-4 mt40">
                     <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon">
+                        <span class="p-inputgroup-addon custom-color">
                             <i class="pi pi-user"></i>
                         </span>
-                        <span class="p-float-label">
+                        <span class="p-float-label ">
                             <input type="text" id="inputgroup" pInputText [(ngModel)]="loginData.username" name = "username"> 
                             <label for="inputgroup">Enter Id</label>
                         </span>
@@ -21,7 +23,7 @@
                 </div>
                 <div class="p-field p-col-12 p-md-4 mt40">
                     <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon">
+                        <span  class="p-inputgroup-addon custom-color">
                             <i class="pi pi-key"></i>
                         </span>
                         <span class="p-float-label">
@@ -31,8 +33,8 @@
                     </div>
                 </div>
               <div class="mt20 text-center" >
-                <button pButton pRipple type="submit" label="Login" class="p-button-success"> </button>
-                <button   pButton pRipple type="reset" label="Reset" class="p-button-raised ml20"> </button>
+                <button style="background-color: #d49dc4e7;" pButton pRipple type="submit" label="Login" class="p-button-secondary"> </button>
+                <button  style="background-color: #d49dc4e7;"   pButton pRipple type="reset" label="Reset" class="p-button-secondary ml20"> </button>
               
               </div>
              </form>
@@ -50,4 +52,7 @@
     
     </div>
 
+   
+
+</div>
 

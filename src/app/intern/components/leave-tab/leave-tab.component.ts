@@ -16,6 +16,7 @@ interface LeaveType {
 })
 export class LeaveTabComponent implements OnInit {
 
+  invalidDates: Array<Date>
   leavesData!: Leave[];
 
   internId = '';
@@ -43,7 +44,6 @@ export class LeaveTabComponent implements OnInit {
     this.types = [
       { type: 'Casual' },
       { type: 'Earned' },
-      { type: 'Annual' },
       { type: 'Medical' },
     ];
   }
@@ -54,6 +54,9 @@ export class LeaveTabComponent implements OnInit {
     this.leave.fromDate = new Date(this.leave.fromDate);
     this.internService.getIntern(this.internId).subscribe((data: any) => {
       this.leavesData = data.leaveList;
+      console.log('Intern...................', data);
+      console.log('Intern Leaves...................', this.leavesData);
+
     });
   }
 

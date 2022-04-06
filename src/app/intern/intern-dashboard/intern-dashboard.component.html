@@ -2,8 +2,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-7 mt20">
-          <p-card>
-            <div style="background-color: gray; border-radius: 10px">
+          <p-card styleClass="custom-card">
+            <div style="background-color: #f5f3f4e7; border-radius: 10px;">
               <div class="row">
                 <img
                 src="{{ 'data:image/jpg;base64,' + profilePic }}"
@@ -12,10 +12,10 @@
                   class="profile-image"
                 />
   
-                <h1 style="color: white; margin-left: 10px">Profile Details!!</h1>
+                <h1 style="color: #bb508ee7; margin-left: 10px">Profile Details!!</h1>
               </div>
             </div>
-            <form (ngSubmit)="formSubmit(intern)">
+            <form [formGroup]="updateForm" (ngSubmit)="formSubmit(intern)">
               <div class="p-field p-col-12 p-md-4 mt40">
                 <div class="p-inputgroup">
                   <span class="p-inputgroup-addon custom-color">
@@ -27,11 +27,21 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.name"
-                      name="name"
+                      formControlName="name"
+                      [ngClass]="{ 'is-invalid': submitted && f?.['name'].errors }"
                     />
                     <label for="inputgroup">Enter Name</label>
                   </span>
                 </div>
+                <div
+                *ngIf="submitted && f?.['name'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f?.['name'].errors?.['required']">
+                  Required Filed!
+                </div>
+       
+              </div>
               </div>
   
               <div class="p-field p-col-12 p-md-4 mt40">
@@ -45,11 +55,22 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.mobile"
-                      name="mobile"
+                      formControlName="mobile"
+                      [ngClass]="{ 'is-invalid': submitted && f?.['mobile'].errors }"
                     />
                     <label for="inputgroup">Enter Mobile Number</label>
                   </span>
                 </div>
+                <div
+                *ngIf="submitted && f?.['mobile'].errors"
+                class="invalid-feedback"
+              >
+          
+                <div *ngIf="f?.['mobile'].errors?.['required']">
+                   Required Filed!
+                </div>
+                <div *ngIf="f?.['mobile'].errors?.['pattern']">Enter a valid mobile number !!</div>
+              </div>
               </div>
   
               <div class="p-field p-col-12 p-md-4 mt40">
@@ -63,11 +84,22 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.email"
-                      name="email"
+                      formControlName="email"  
+                      [ngClass]="{ 'is-invalid': submitted && f?.['email'].errors }"
                     />
                     <label for="inputgroup">Enter Email Id</label>
                   </span>
                 </div>
+                <div
+                *ngIf="submitted && f?.['email'].errors"
+                class="invalid-feedback"
+              >
+          
+                <div *ngIf="f?.['email'].errors?.['required']">
+                   Required Filed!
+                </div>
+                <div *ngIf="f?.['email'].errors?.['pattern']">Email must be a valid email address</div>
+              </div>
               </div>
   
               <div class="p-field p-col-12 p-md-4 mt40">
@@ -85,36 +117,23 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.address"
-                      name="perAddress"
+                      formControlName="address"
+                      [ngClass]="{ 'is-invalid': submitted && f?.['address'].errors }"
                     >
                     </textarea>
                     <label for="inputgroup">Enter Permanent Address</label>
                   </span>
                 </div>
-              </div>
-  
-              <!-- <div class="p-field p-col-12 p-md-4 mt40">
-                <div class="p-inputgroup">
-                  <span class="p-inputgroup-addon custom-color">
-                    <i class="pi pi-id-card"></i>
-                  </span>
-                  <span class="p-float-label">
-                    <textarea
-                      name=""
-                      id=""
-                      cols="30"
-                      rows="2"
-                      type="text"
-                      id="inputgroup"
-                      pInputText
-                      [(ngModel)]="employee.currentAddress"
-                      name="currAddress"
-                    >
-                    </textarea>
-                    <label for="inputgroup">Enter Current Address</label>
-                  </span>
+                <div
+                *ngIf="submitted && f?.['address'].errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f?.['address'].errors?.['required']">
+                  Required Filed!
                 </div>
-              </div> -->
+       
+              </div>
+              </div>
   
               <div class="p-field p-col-12 p-md-4 mt40">
                 <div class="p-inputgroup">
@@ -127,7 +146,7 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.username"
-                      name="username"
+                      formControlName="username" 
                       readonly
                     />
                     <label for="inputgroup">Enter Employee Id</label>
@@ -146,7 +165,7 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.mentor"
-                      name="designation"
+                      formControlName="mentor" 
                       readonly
                     />
                     <label for="inputgroup">Mentor Name</label>
@@ -165,7 +184,8 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.projectname"
-                      name="department"
+                      formControlName="department" 
+
                     />
                     <label for="inputgroup">Enter Employee Department</label>
                   </span>
@@ -183,7 +203,7 @@
                       id="inputgroup"
                       pInputText
                       [(ngModel)]="intern.location"
-                      name="location"
+                      formControlName="location" 
                       readonly
                     />
                     <label for="inputgroup">Enter Base/Location</label>
@@ -191,43 +211,7 @@
                 </div>
               </div>
 
-              <div class="p-field p-col-12 p-md-4 mt40">
-                <div class="p-inputgroup">
-                  <span class="p-inputgroup-addon custom-color">
-                    <i class="pi pi-calendar-plus"></i>
-                  </span>
-                  <span class="p-float-label">
-                    <input
-                      type="text"
-                      id="inputgroup"
-                      pInputText
-                      [(ngModel)]="intern.doj"
-                      name="doj"
-                      readonly
-                    />
-                    <label for="inputgroup">Date Of Joining</label>
-                  </span>
-                </div>
-              </div>
-
-              <div class="p-field p-col-12 p-md-4 mt40">
-                <div class="p-inputgroup">
-                  <span class="p-inputgroup-addon custom-color">
-                    <i class="pi pi-calendar-plus"></i>
-                  </span>
-                  <span class="p-float-label">
-                    <input
-                      type="text"
-                      id="inputgroup"
-                      pInputText
-                      [(ngModel)]="intern.dol"
-                      name="dol"
-                      readonly
-                    />
-                    <label for="inputgroup">Date Of Ending</label>
-                  </span>
-                </div>
-              </div>
+           
   
               <div class="mt20 text-center">
                 <button
@@ -236,6 +220,7 @@
                   type="submit"
                   label="Edit"
                   class="p-button-success"
+                  style="background-color: #d49dc4e7; border-color:#ffffffe7 ;"
                 ></button>
               </div>
             </form>
@@ -243,16 +228,17 @@
         </div>
   
         <div class="col-md-5 mt20">
-          <p-card header="Documentation!!">
+          <p-card header="Documentation!!" styleClass="custom-card">
             <div>
               <label for="dos"
-                ><strong style="color: rgba(221, 26, 68)">Resume</strong></label
+                ><strong style="color: #ffffffe7">Resume</strong></label
               >
               <hr />
               <div class="p-inputgroup">
                 <input
                   class="mt10"
                   type="file"
+                  accept="application/pdf"
                   pInputText
                   id="dos"
                   required
@@ -267,13 +253,14 @@
                   icon="pi pi-upload"
                   class="p-button-text"
                   (click)="uploadFile()"
+                  style="color: #ffffffe7"
                 ></button>
               </div>
             </div>
   
             <div class="mt40">
               <label for="dos"
-                ><strong style="color: rgba(221, 26, 68)"
+                ><strong style="color: #ffffffe7"
                   >Personal Identification</strong
                 ></label
               >
@@ -283,6 +270,7 @@
                 <input
                   class="mt10"
                   type="file"
+                  accept="application/pdf"
                   pInputText
                   id="dos1"
                   required
@@ -297,13 +285,14 @@
                   icon="pi pi-upload"
                   class="p-button-text"
                   (click)="uploadFile()"
+                  style="color: #ffffffe7"
                 ></button>
               </div>
             </div>
   
             <div class="mt40">
               <label for="dos"
-                ><strong style="color: rgba(221, 26, 68)"
+                ><strong style="color: #ffffffe7"
                   >Official Documents</strong
                 ></label
               >
@@ -327,15 +316,58 @@
                   icon="pi pi-download"
                   class="p-button-text"
                   (click)="downloadFile(intern.fileName)"
+                  style="color: #ffffffe7"
                 ></button>
               </div>
             </div>
           </p-card>
           <div class="mt20">
-            <p-card header=" Uploaded Documents!!">
+            <p-card header=" Uploaded Documents!!" styleClass="custom-card">
               <ul *ngFor="let item of documents">
                 <li>{{ item.filename }}</li>
               </ul>
+            </p-card>
+          </div>
+          <div class="mt20">
+            <p-card header="Internship Period!!" styleClass="custom-card">
+              <div class="p-field p-col-12 p-md-4 mt20">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-calendar-plus"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                      value= "{{intern.doj|date: 'MMMM d, y'}}"
+                    name="doj"
+                      readonly
+                    />  
+                    <label for="inputgroup">Date Of Joining</label>
+                  </span>
+                </div>
+              </div>
+
+              <div class="p-field p-col-12 p-md-4 mt40">
+                <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon custom-color">
+                    <i class="pi pi-calendar-plus"></i>
+                  </span>
+                  <span class="p-float-label">
+                    <input
+                      type="text"
+                      id="inputgroup"
+                      pInputText
+                   
+                      value= "{{intern.dol|date: 'MMMM d, y'}}"
+                      name="dol"
+                      readonly
+                    />
+                    <label for="inputgroup">Date Of Ending</label>
+                  </span>
+                </div>
+              </div>
             </p-card>
           </div>
         </div>

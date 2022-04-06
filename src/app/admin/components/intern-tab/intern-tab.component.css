@@ -12,8 +12,9 @@
    
   }
  
-  :host ::ng-deep .sizes .p-button-sm {
-    background-color: rgba(221, 26, 68);
+  :host ::ng-deep .sizes .p-button-sm  {
+    background-color: #bb508ee7 !important;
+    color: white !important;
   
  }
  
@@ -36,3 +37,47 @@
  .custom{
      display: block;
  }
+
+
+ 
+.custom-table2::ng-deep * {
+   background-color:  #d49dc4e7  !important;
+   color: black !important;
+}
+
+.div1-h2{
+   background-color: #bb508ee7 !important ; color: white !important; display: table !important; padding: 6px !important;
+}
+
+.div1{
+   display: flex;
+               align-items: center;
+               justify-content: space-between
+}
+
+:host ::ng-deep .btn * {
+   color: white !important;
+   background-color:#bb508ee7 !important ;
+   border-color: #d8d3d6e7 !important;
+
+
+}
+
+
+
+.btn::ng-deep * {
+   color: white !important;
+     background-color: #bb508ee7!important;
+     border-color: #bb508ee7 !important;
+  }
+  .invalid-feedback::ng-deep *{
+  
+   color: rgb(200, 38, 38);
+  
+}
+
+.p-fluid{
+   color:#bb508ee7;
+}
+
+ 

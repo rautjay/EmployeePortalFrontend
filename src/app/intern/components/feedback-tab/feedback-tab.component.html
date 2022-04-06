@@ -3,13 +3,14 @@
 
 <div class="card">
     
-    <p-tabView styleClass="tabview-custom">
+    <p-tabView styleClass="tabview-custom" class="custom-accordion">
         <p-tabPanel>
             <ng-template pTemplate = "header">
-                <i style="color: rgba(221, 26, 68)" class="pi pi-calendar"></i>
-        <span style="color: rgb(221, 26, 68); margin-left: 4px">History</span>
+              <i style="color: white; " class="pi pi-refresh"></i>
+              <span style="color: white; margin-left: 4px;  ">History</span>
             </ng-template>
             <p-table
+            class="custom-table2"
         #dt
         [value]="reportData"
         styleClass="p-datatable-sm"
@@ -24,18 +25,18 @@
       >
         <ng-template pTemplate="caption">
           <div class="p-d-flex p-ai-center p-jc-between">
-            <h2>
-             Feedback List!!
-              <span style="float: right" class="p-input-icon-left">
+            <div class="div1"><h3 class="div1-h2" > Feedback List</h3>
+
+              <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
                 <input
                   pInputText
                   type="text"
                   (input)="dt.filterGlobal(getEventValue($event), 'contains')"
                   placeholder="Search..."
+                  class="p-inputtext-sm"
                 />
-              </span>
-            </h2>
+              </span></div>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -62,15 +63,15 @@
         </p-tabPanel>
         <p-tabPanel header="Header II">
             <ng-template pTemplate = "header">
-                <i style="color: rgba(221, 26, 68)" class="pi pi-calendar"></i>
-        <span style="color: rgb(221, 26, 68); margin-left: 4px">Add Feedback</span>
+              <i style="color: white; " class="pi pi-book"></i>
+              <span style="color: white; margin-left: 4px;  ">Add Feedback</span>
             </ng-template>
             <div class="bootstrap-wrapper">
                 <div class="container">
                   <div class="row">
                     <div class="col-md-6 offset-md-3 mt20">
                    
-                        <p-panel header="Feedback!!">
+                        <p-panel header="Feedback!!" class="custom-panel">
                             <form (ngSubmit)="formSubmit()">
                       
                                 <span style="margin-top: 5px;"  class="p-float-label ml20">
@@ -94,6 +95,7 @@
                                           label="Add Feedback"
                                           icon="pi pi-check"
                                           styleClass="p-button-sm"
+                                          class="btn"
                                         ></p-button>
                                       </div>
                                       
@@ -103,6 +105,7 @@
                                           label="Reset"
                                           icon="pi pi-refresh"
                                           styleClass="p-button-sm"
+                                          class="btn"
                                         ></p-button>
                                       </div>
                                 </div>

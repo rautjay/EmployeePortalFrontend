@@ -9,6 +9,7 @@ import { InternTabComponent } from './components/intern-tab/intern-tab.component
 import { ProjectsTabComponent } from './components/projects-tab/projects-tab.component';
 import { LeaveTabComponent } from './components/leave-tab/leave-tab.component';
 import { FeedbackTabComponent } from './components/feedback-tab/feedback-tab.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 
@@ -21,7 +22,8 @@ import { FeedbackTabComponent } from './components/feedback-tab/feedback-tab.com
     InternTabComponent,
     ProjectsTabComponent,
     LeaveTabComponent,
-    FeedbackTabComponent
+    FeedbackTabComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,10 @@ import { FeedbackTabComponent } from './components/feedback-tab/feedback-tab.com
             path: 'feedback',
             component: FeedbackTabComponent,
           },
+          {
+            path: 'settings',
+            component: ChangePasswordComponent,
+          }
         
         ],
       },

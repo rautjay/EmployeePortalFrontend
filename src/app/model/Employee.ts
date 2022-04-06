@@ -1,21 +1,23 @@
 export interface Employee{
 
-          id:number,
-          name: string,
-          designation:string,
-          email:string;
-          location:string,
-          department:string,
-          mobile:string,
-          username:string,
-          doj:Date,
-          dol:Date,
-          fileName:string,
-          review:string,
-          actionTaken:string,
-          permanentAddress:string,
-          currentAddress:string,
-          profilePic:string
+          id?:number,
+          name?: string,
+          designation?:string,
+          email?:string;
+          location?:string,
+          department?:string,
+          mobile?:string,
+          username?:string,
+          doj?:Date,
+          dol?:Date,
+          fileName?:string,
+          review?:string,
+          actionTaken?:string,
+          permanentAddress?:string,
+          currentAddress?:string,
+          profilePic?:string
+          detailsFilename?:string;
+          reportingTo?:string
           
       }
     

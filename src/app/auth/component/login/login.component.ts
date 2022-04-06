@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -31,7 +32,13 @@ export class LoginComponent implements OnInit {
     this.loginservice.generateToken(this.loginData).subscribe(
       (data:any)=>{
          console.log(data)
-        alert("success");
+         Swal.fire({
+           position:'top',
+          icon: 'success',
+          title: 'Login Successfull!!',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
         //login........
         this.loginservice.loginUser(data.token);
@@ -77,8 +84,13 @@ export class LoginComponent implements OnInit {
       },
       (error)=>{
            console.log(error)
-           alert("error");
-         alert("Invalid Details")
+           Swal.fire({
+            position:'top',
+           icon: 'error',
+           title: 'Invalid Credentials!!!',
+           showConfirmButton: false,
+           timer: 1500
+         })
       }
       );
     

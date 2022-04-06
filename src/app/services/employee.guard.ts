@@ -20,7 +20,7 @@ constructor(private login:LoginService, private router:Router){
         
         return true;
       }
-      this.router.navigate(['login']);
+      this.router.navigate(['/auth/login']);
      return true;
  }
 

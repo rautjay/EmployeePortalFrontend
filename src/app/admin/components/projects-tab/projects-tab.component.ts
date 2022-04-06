@@ -101,6 +101,10 @@ export class ProjectsTabComponent implements OnInit {
     // this.submitted=false;
     this.projectDialogue = true;
     console.log('Project:' + project);
+    if(this.project.dateOfStarting)
+    this.project.dateOfStarting = new Date (this.project.dateOfStarting);
+    if(this.project.dateOfSubmission)
+    this.project.dateOfSubmission = new Date (this.project.dateOfSubmission);
   }
 
   deleteClient(id: number) {

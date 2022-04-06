@@ -10,6 +10,9 @@ import { InternTabComponent } from './components/intern-tab/intern-tab.component
 import { ProjectsTabComponent } from './components/projects-tab/projects-tab.component';
 import { LeaveTabComponent } from './components/leave-tab/leave-tab.component';
 import { ReportTabComponent } from './components/report-tab/report-tab.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { BillingComponent } from './components/billing/billing.component';
+import { PoliciesComponent } from './components/policies/policies.component';
 
 
 
@@ -22,7 +25,10 @@ import { ReportTabComponent } from './components/report-tab/report-tab.component
     InternTabComponent,
     ProjectsTabComponent,
     LeaveTabComponent,
-    ReportTabComponent
+    ReportTabComponent,
+    ChangePasswordComponent,
+    BillingComponent,
+    PoliciesComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +61,18 @@ import { ReportTabComponent } from './components/report-tab/report-tab.component
           {
             path: 'report',
             component: ReportTabComponent,
+          },
+          {
+            path: 'change-password',
+            component: ChangePasswordComponent,
+          },
+          {
+            path: 'billing',
+            component: BillingComponent,
+          },
+          {
+            path: 'policies',
+            component: PoliciesComponent,
           }
         ],
       },

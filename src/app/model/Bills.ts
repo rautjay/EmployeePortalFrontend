@@ -6,6 +6,9 @@ export interface Bills{
     attachement?:Byte[];
     fileUri?:string;
     filename?:string;
+    reason?:string;
+    nature?:string;
+    approveOption?:string
 
 
 

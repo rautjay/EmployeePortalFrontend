@@ -8,39 +8,51 @@ import { saveAs } from 'file-saver';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Intern } from 'src/app/model/Intern';
 import { InternService } from 'src/app/services/intern.service';
+import { TemplateService } from 'src/app/services/template.service';
+import { Template } from 'src/app/model/template';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-documentation-tab',
   templateUrl: './documentation-tab.component.html',
   styleUrls: ['./documentation-tab.component.css'],
   providers: [MessageService],
+
 })
 export class DocumentationTabComponent implements OnInit {
   
+ 
   employeeData:Employee[];
   employee:Employee;
   selectedFiles?: FileList;
   currentFile?: File;
-
+   templateData:Template[];
   internData:Intern[];
   intern:Intern;
 
   message = '';
   errorMsg = '';
+  tempId='';
 
-  constructor(private empService:EmployeeService,private messageService:MessageService, private docsService:ComDocumentService,private internService:InternService) { }
 
+  constructor(private empService:EmployeeService,private messageService:MessageService, private docsService:ComDocumentService,private internService:InternService, private templateService:TemplateService) { }
+   
   ngOnInit(): void {
                
      this.empService.loadAllEmployee().subscribe((data:any)=>{
        this.employeeData = data;
-     })
+     });
 
                 
      this.internService.loadAllInterns().subscribe((data:any)=>{
       this.internData = data;
-    })
+    });
 
+    this.templateService.getall().subscribe((data:any)=>{
+      this.templateData = data;
+    });
+        
   }
 
    //for searching 
@@ -65,13 +77,16 @@ export class DocumentationTabComponent implements OnInit {
         this.currentFile = file;
 
         this.docsService.upload(this.currentFile,id).subscribe(
-          (event: any) => {
+          (data: any) => {
             this.ngOnInit();
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'File Uploaded!!',
-            });
+            Swal.fire({
+              position:'top',
+             icon: 'success',
+             title: 'File Uploaded!!',
+             showConfirmButton: false,
+             timer: 1500
+           })
+        
           },
           (err: any) => {
             console.log(err);
@@ -112,11 +127,13 @@ export class DocumentationTabComponent implements OnInit {
         this.docsService.uploadFileToIntern(this.currentFile,id).subscribe(
           (event: any) => {
             this.ngOnInit();
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'File Uploaded!!',
-            });
+            Swal.fire({
+              position:'top',
+             icon: 'success',
+             title: 'Login Successfull!!',
+             showConfirmButton: false,
+             timer: 1500
+           })
           },
           (err: any) => {
             console.log(err);
@@ -131,5 +148,74 @@ export class DocumentationTabComponent implements OnInit {
     }
   }
 
+  uploadTemplate(){
+    console.log("file upload.....................")
+    this.errorMsg = '';
 
-}
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+
+      if (file) {
+        this.currentFile = file;
+
+        this.templateService.upload(this.currentFile).subscribe(
+          (data: any) => {
+              this.ngOnInit();     
+              Swal.fire({
+                position:'top',
+               icon: 'success',
+               title: 'File Uploaded!!',
+               showConfirmButton: false,
+               timer: 1500
+             })
+           
+          },
+          (err: any) => {
+            console.log(err);
+            // if (err.error && err.error.responseMessage) {
+            //   this.errorMsg = err.error.responseMessage;
+            // } else {
+            //   this.errorMsg = 'Error occurred while uploading a file!';
+            // }
+
+            this.currentFile = undefined;
+          }
+        );
+      }
+
+      this.selectedFiles = undefined;
+    }
+  }
+
+  downloadTemplate(filename:string)
+  {
+    this.templateService.downloadTemplate(filename).subscribe((event) => {
+      saveAs(event, filename);
+    });
+    (error: HttpErrorResponse) => {
+      console.log(error);
+    };
+  }
+  
+  deleteTemplate(id:any){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+    this.templateService.deletefile(id).subscribe((result) => {
+          this.ngOnInit();
+          Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        });
+      }
+    });
+  }
+  }
+  
+
+

@@ -1,7 +1,8 @@
-::ng-deep 
-    p-calender  table td {
-          color: brown !important;
-    }
+.custom-accordion::ng-deep *{
+   background-color:  #d49dc4e7 !important;
+   color: white;
+  
+}
 
     
 
@@ -9,3 +10,45 @@
 .p-fluid{
       color: blueviolet;
    }
+
+
+  
+  
+  
+  
+  .custom-table2::ng-deep * {
+      background-color:  #f5f3f4e7  !important;
+      color: black !important;
+   }
+   
+   .div1-h2{
+      background-color: #bb508ee7 !important ; color: white !important; display: table !important; padding: 6px !important;
+   }
+   
+   .div1{
+      display: flex;
+                  align-items: center;
+                  justify-content: space-between
+   }
+   
+   :host ::ng-deep .btn * {
+      color: white !important;
+      background-color:#bb508ee7 !important ;
+     border-color: black !;
+   
+   }
+
+   .custom-dialog::ng-deep *{
+   color:#8b2f65e7 !important ;
+     
+  }
+
+  /* .custom-accordion::ng-deep *{
+   background-color:  #d49dc4e7 !important;
+   color: white;
+  
+} */
+
+ 
+
+ 

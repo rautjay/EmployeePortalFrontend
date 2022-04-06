@@ -34,5 +34,24 @@ export class UserService {
 
    }
 
+   public changePassword(oldPassword:string, newPassword:string){
+    const formData:any = new FormData();
+   
+    formData.append('oldPassword', oldPassword);
+    formData.append('newPassword', newPassword);
+  
+    return this.http.post(`${environment.baseUrl}/user/change_password/`,formData);  
+   }
+
+
+   public addIntern(user:any)
+   {
+     console.log(user);
+     
+          return this.http.post(`${environment.baseUrl}/intern/register`,user);  
+ 
+          
+   }
+
    
 }

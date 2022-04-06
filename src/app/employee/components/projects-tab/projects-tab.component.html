@@ -31,7 +31,7 @@
                 type="text"
                 pInputText
                 id="dos"
-                [(ngModel)]="project.dateOfStarting"
+               value="{{project.dateOfStarting| date: 'MMMM d, y'}}"
                 required
                 autofocus
                 readonly
@@ -75,7 +75,7 @@
                 type="text"
                 pInputText
                 id="doe"
-                [(ngModel)]="project.dateOfSubmission"
+                value="{{project.dateOfSubmission| date: 'MMMM d, y'}}"
                 required
                 autofocus
                 readonly
@@ -126,6 +126,7 @@
       icon="pi pi-times"
       class="p-button-text"
       (click)="hideDialog()"
+      style="color: #be3c88e7;"
     ></button>
     <button
       pButton
@@ -134,6 +135,7 @@
       icon="pi pi-check"
       class="p-button-text"
       (click)="saveClient()"
+      style="color: #be3c88e7;"
     ></button>
     <!-- <button type="button" pButton pRipple (click)="showSuccess()" label="Success" class="p-button-success"></button> -->
   </ng-template>
@@ -144,6 +146,7 @@
 <div >
   <p-table
     styleClass="p-datatable-sm"
+    class="custom-table2"
     #dt
     [value]="projectData"
     [rows]="5"
@@ -156,20 +159,18 @@
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
-        <h2 class="p-m-0">
-          Project Details
-          <span style="float: right;"  class="p-input-icon-left">
-            <i class="pi pi-search"></i>
+        <div class="div1"><h3 class="div1-h2" > Project List</h3>
+
+          <span class="p-input-icon-left">
+            <i class="pi pi-search" style="color: white !important;"></i>
             <input
               pInputText
               type="text"
               (input)="dt.filterGlobal(getEventValue($event), 'contains')"
               placeholder="Search..."
-              class="p-inputtext"
+              class="p-inputtext-sm"
             />
-          </span>
-        </h2>
-       
+          </span></div>
         
        
       </div>
@@ -193,17 +194,19 @@
         <td>{{i+1}}</td>
         <td>{{ project1.name }}</td>
         <td>{{ project1.updates }}</td>
-        <td>{{ project1.dateOfStarting }}</td>
-        <td>{{ project1.dateOfSubmission }}</td>
+        <td>{{ project1.dateOfStarting| date: "MMMM d, y"  }}</td>
+        <td>{{ project1.dateOfSubmission| date: "MMMM d, y"  }}</td>
 
         <td>
+         <div class="btn">
           <button
-            pButton
-            pRipple
-            icon="pi pi-pencil"
-            (click)="editClient(project1)"
-            class="p-button-rounded p-button-success p-mr-2"
-          ></button>
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          (click)="editClient(project1)"
+          class="p-button-rounded p-button-success p-mr-2"
+        ></button>
+         </div>
          
         </td>
       </tr>

@@ -8,6 +8,8 @@ import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ComDocumentService } from 'src/app/services/com-document.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-intern-dashboard',
@@ -16,7 +18,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   providers: [MessageService],
 })
 export class InternDashboardComponent implements OnInit {
-
+  updateForm: FormGroup;
   documents:documents[]=[];
   intern:Intern;
   internId = "";
@@ -25,7 +27,8 @@ export class InternDashboardComponent implements OnInit {
   selectedFiles?: FileList;
   currentFile?: File;
   profilePic="";
-  constructor(private internService:InternService, private docService:DocumentsService, private messageService:MessageService, private loginService:LoginService) { }
+  submitted = false;
+  constructor(private formBuilder: FormBuilder,private internService:InternService, private docService:DocumentsService, private messageService:MessageService, private loginService:LoginService, private comDocService:ComDocumentService) { }
      
   ngOnInit(): void {
    
@@ -42,10 +45,33 @@ export class InternDashboardComponent implements OnInit {
      this.documents = data.documents;
    })
 
+   this.updateForm = this.formBuilder.group({
+   
+    
+    name: ['', [Validators.required]],
+    mobile: ['', [Validators.required, Validators.pattern("[\\d]{10}")]],
+    email: ['', [Validators.required, Validators.pattern("[A-Za-z0-9_.]+[@][a-z]+[.][a-z]{2,3}")]],
+    address: ['', [Validators.required]],
+    mentor: ['', [Validators.required]],
+  username: ['', [Validators.required]],
+
+  location: ['', [Validators.required]],
+    });
+
  }
+
+ get f() { return this.updateForm.controls; }
 
      formSubmit(intern:Intern)
      {
+      
+        this.submitted = true;
+        if (this.updateForm.invalid) {
+          return;
+      }
+      if(this.submitted)
+      {
+
        this.intern= {...intern}
         
        if (this.internId) {
@@ -72,7 +98,10 @@ export class InternDashboardComponent implements OnInit {
           }
         });
     }
+  
      }
+    }
+ 
 
 
      selectFile(event: any): void {
@@ -110,7 +139,7 @@ export class InternDashboardComponent implements OnInit {
     }
      
     downloadFile(filename: string): void {
-      this.docService.download(filename).subscribe((event) => {
+      this.comDocService.download(filename).subscribe((event) => {
         saveAs(event, filename);
       });
       (error: HttpErrorResponse) => {

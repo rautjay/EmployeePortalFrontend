@@ -21,7 +21,7 @@ export class BillsService {
     return this.http.post(`${environment.baseUrl}/bill/`, data)
   }
 
-  upload(file: File, obj:any): Observable<HttpEvent<any>> {
+  upload(file: File, obj:any, id:any): Observable<HttpEvent<any>> {
 
     const json = JSON.stringify(obj);
 const blob = new Blob([json], {
@@ -36,7 +36,7 @@ const blob = new Blob([json], {
 
   };
 
-    const req = new HttpRequest('POST', `${environment.baseUrl}/bill/upload`, formData,{
+    const req = new HttpRequest('POST', `${environment.baseUrl}/bill/upload/${id}`, formData,{
       reportProgress: true,
       responseType: 'json',
     

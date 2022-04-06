@@ -23,6 +23,44 @@
   
   ::ng-deep .app-toolbar{
       
-    background-color: white;
+    background-color: #ffffffe7;
    
   }
+
+  .custom-profile-image{
+    max-width: 40px;
+
+    border: 0.2px solid black;
+      border-radius: 50%;
+    text-align: center;
+   
+  }
+
+
+  ::ng-deep .sidebar{
+    
+    background-color: #bb508ee7 !important;
+    color:#e7cde0e7 !important  ;
+   
+  }
+  
+  ::ng-deep .sidebar button *{
+      
+  
+    color:white !important  ;
+   
+  }
+  a{
+    color: white;
+  }
+  
+
+  
+    :host ::ng-deep  .p-button-link {
+      color: #bb508ee7;
+    }
+    
+    .p-button-secondary{
+      background-color: #bb508ee7 !important;
+      color: white !important;
+    }

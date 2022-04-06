@@ -5,6 +5,7 @@
 header="INTERN DETAILS"
 [modal]="true"
 styleClass="p-fluid"
+class="custom-dialog"
 >
 <ng-template pTemplate="content">
   
@@ -31,6 +32,7 @@ styleClass="p-fluid"
         </div>
 
         <div class="col-md-8">
+          <form [formGroup]="updateForm" (ngSubmit)="updateIntern()">
           <div class="grid p-fluid">
             <div class="custom">
               <div >
@@ -43,9 +45,21 @@ styleClass="p-fluid"
                   type="text"
                   [(ngModel)]="intern.name"
                   class="p-inputtext-sm"
+                  style="color: black !important;"
+                  formControlName="name"
+                  [ngClass]="{ 'is-invalid': submitted1 && f1?.['name'].errors }"
                 />
               </div>
             </div>
+            <div
+            *ngIf="submitted1 && f1?.['name'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f1?.['name'].errors?.['required']">
+              Required Filed!
+            </div>
+   
+          </div>
           </div>
 
           <div class="grid p-fluid mt20">
@@ -61,9 +75,22 @@ styleClass="p-fluid"
                   type="text"
                   [(ngModel)]="intern.mobile"
                   class="p-inputtext-sm"
+                  style="color: black !important;"
+                  formControlName="mobile"
+                  [ngClass]="{ 'is-invalid': submitted1 && f1?.['mobile'].errors }"
                 />
               </div>
             </div>
+            <div
+            *ngIf="submitted1 && f1?.['mobile'].errors"
+            class="invalid-feedback"
+          >
+      
+            <div *ngIf="f1?.['mobile'].errors?.['required']">
+               Required Filed!
+            </div>
+            <div *ngIf="f1?.['mobile'].errors?.['pattern']">Enter a valid mobile number !!</div>
+          </div>
           </div>
           <div class="grid p-fluid mt20">
             <div class="custom">
@@ -79,15 +106,28 @@ styleClass="p-fluid"
                   type="text"
                   [(ngModel)]="intern.email"
                   class="p-inputtext-sm"
+                  style="color: black !important;"
+                  formControlName="email"
+                  [ngClass]="{ 'is-invalid': submitted1 && f1?.['email'].errors }"
                 />
               </div>
             </div>
+            <div
+            *ngIf="submitted1 && f1?.['email'].errors"
+            class="invalid-feedback"
+          >
+      
+            <div *ngIf="f1?.['email'].errors?.['required']">
+               Required Filed!
+            </div>
+            <div *ngIf="f1?.['email'].errors?.['pattern']">Email must be a valid email address</div>
+          </div>
           </div>
           <div class="grid p-fluid mt20">
             <div class="custom">
               <div>
                 <div class="mb4">
-                  <strong>Designation</strong>
+                  <strong>Project</strong>
                 </div>
                 <div></div>
                 <input
@@ -97,9 +137,21 @@ styleClass="p-fluid"
                   type="text"
                   [(ngModel)]="intern.projectname"
                   class="p-inputtext-sm"
+                  style="color: black !important;"
+                  formControlName="projectname"
+                  [ngClass]="{ 'is-invalid': submitted1 && f1?.['projectname'].errors }"
                 />
               </div>
             </div>
+            <div
+            *ngIf="submitted1 && f1?.['projectname'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f1?.['projectname'].errors?.['required']">
+              Required Filed!
+            </div>
+   
+          </div>
           </div>
 
           <div class="grid p-fluid mt20">
@@ -114,9 +166,21 @@ styleClass="p-fluid"
                   type="text"
                   [(ngModel)]="intern.mentor"
                   class="p-inputtext-sm"
+                  style="color: black !important;"
+                  formControlName="mentor"
+                  [ngClass]="{ 'is-invalid': submitted1 && f1?.['mentor'].errors }"
                 />
               </div>
             </div>
+            <div
+            *ngIf="submitted1 && f1?.['mentor'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f1?.['mentor'].errors?.['required']">
+              Required Filed!
+            </div>
+   
+          </div>
           </div>
           <div class="grid p-fluid mt20">
             <div class="custom">
@@ -132,9 +196,21 @@ styleClass="p-fluid"
                   type="text"
                   [(ngModel)]="intern.location"
                   class="p-inputtext-sm"
+                  style="color: black !important;"
+                  formControlName="location"
+                  [ngClass]="{ 'is-invalid': submitted1 && f1?.['location'].errors }"
                 />
               </div>
             </div>
+            <div
+            *ngIf="submitted1 && f1?.['location'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f1?.['location'].errors?.['required']">
+              Required Filed!
+            </div>
+   
+          </div>
           </div>
           <div class="grid p-fluid mt20">
             <div class="custom">
@@ -150,30 +226,51 @@ styleClass="p-fluid"
                   type="text"
                   [(ngModel)]="intern.address"
                   class="p-inputtext-sm"
+                  style="color: black !important;"
+                  formControlName="address"
+                  [ngClass]="{ 'is-invalid': submitted1 && f1?.['address'].errors }"
                 />
               </div>
             </div>
+            <div
+            *ngIf="submitted1 && f1?.['address'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f1?.['address'].errors?.['required']">
+              Required Filed!
+            </div>
+   
+          </div>
           </div>
 
-          <div class="row mt20" style="margin-left: 20px">
-            <div class="btn">
+          <div class="row mt20 ml20">
+     
+            <div>  <p-button
+            
+            
+              label="Cancel"
+              icon="pi pi-times"
+              styleClass="p-button-sm"
+              (onClick)="hideDialog()"
+              class="btn"
+            ></p-button></div>
+           
+           
+             <div class="ml20">
               <p-button
-                label="Cancel"
-                icon="pi pi-times"
-                styleClass="p-button-sm"
-                (onClick)="hideDialog()"
-              ></p-button>
-            </div>
-            <div class="sizes ml20">
-              <p-button
-                type="submit"
-                label="Update"
-                icon="pi pi-check"
-                styleClass="p-button-sm"
-                (onClick)="updateIntern()"
-              ></p-button>
-            </div>
+          
+
+              type="submit"
+              label="Update"
+              icon="pi pi-check"
+              styleClass="p-button-sm"
+           
+              class="btn"
+            ></p-button>
+             </div>
+            
           </div>
+          </form>
         </div>
       </div>
       <br />
@@ -186,82 +283,88 @@ styleClass="p-fluid"
 
 
 
+<div class="custom-table2">
 
+  
 <p-table
-  #dt
-  [value]="internData"
-  [rows]="5"
-  [paginator]="true"
-  [globalFilterFields]="[
-    'username',
-    'intern.name',
-    'intern.mentor',
-    'intern.location'
-  ]"
-  responsiveLayout="scroll"
-  [rowHover]="true"
-  dataKey="id"
-  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-  [showCurrentPageReport]="true"
+#dt
+[value]="internData"
+[rows]="5"
+[paginator]="true"
+[globalFilterFields]="[
+  'username',
+  'intern.name',
+  'intern.mentor',
+  'intern.location'
+]"
+responsiveLayout="scroll"
+[rowHover]="true"
+dataKey="id"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+[showCurrentPageReport]="true"
 >
-  <ng-template pTemplate="caption">
-    <div class="p-d-flex p-ai-center p-jc-between">
-      <h2 class="p-m-0">Intern List
-      <span style="float: right;" class="p-input-icon-left">
-        <i class="pi pi-search"></i>
+<ng-template pTemplate="caption">
+  <div class="p-d-flex p-ai-center p-jc-between">
+    <div class="div1"><h3 class="div1-h2" > Intern List</h3>
+
+      <span class="p-input-icon-left">
+        <i class="pi pi-search" style="color: white !important;"></i>
         <input
           pInputText
           type="text"
           (input)="dt.filterGlobal(getEventValue($event), 'contains')"
           placeholder="Search..."
+          class="p-inputtext-sm"
         />
-      </span>
-    </h2>
-    </div>
-  </ng-template>
-  <ng-template pTemplate="header">
-    <tr>
-      <th></th>
-      <th>Sr.No.</th>
-      <th pSortableColumn="name">Name</th>
+      </span></div>
+  </div>
+</ng-template>
+<ng-template pTemplate="header">
+  <tr>
+    <th></th>
+    <th>Sr.No.</th>
+    <th pSortableColumn="name">Name</th>
 
-      <th pSortableColumn="designation">Location</th>
-      <th pSortableColumn="location">Mentor</th>
-      <th>Action's</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-element let-i="rowIndex">
-    <tr>
-      <td></td>
-      <td>{{ i + 1 }}</td>
-      <td>{{ element.name }}</td>
-       <td>{{ element.location }}</td>
-      <td>{{ element.mentor}}</td>
-      <td>
+    <th pSortableColumn="designation">Location</th>
+    <th pSortableColumn="location">Mentor</th>
+    <th>Action's</th>
+  </tr>
+</ng-template>
+<ng-template pTemplate="body" let-element let-i="rowIndex">
+  <tr>
+    <td></td>
+    <td>{{ i + 1 }}</td>
+    <td>{{ element.name }}</td>
+     <td>{{ element.location }}</td>
+    <td>{{ element.mentor}}</td>
+    <td>
+      <div class="btn">
         <button
-          pButton
-          pRipple
-          icon="pi pi-pencil"
-          class="p-button-rounded p-button-success p-mr-2"
-          (click)="editIntern(element)"
-        ></button>
+        pButton
+        pRipple
+        icon="pi pi-pencil"
+        class="p-button-rounded p-mr-2"
+        (click)="editIntern(element)"
+      ></button>
 
-        &nbsp;
-        <button
-          pButton
-          pRipple
-          icon="pi pi-trash"
-          class="p-button-rounded p-button-warning"
-          (click)="deleteIntern(element.id)"
-        ></button>
-      </td>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="summary">
-    <div class="p-d-flex p-ai-center p-jc-between">
-      In total there are {{ internData ? internData.length : 0 }} Interns..
-    </div>
-  </ng-template>
+      &nbsp;
+      <button
+        pButton
+        pRipple
+        icon="pi pi-trash"
+        class="p-button-rounded "
+        (click)="deleteIntern(element.id)"
+      ></button>
+      </div>
+    </td>
+  </tr>
+</ng-template>
+<ng-template pTemplate="summary">
+  <div class="p-d-flex p-ai-center p-jc-between">
+    In total there are {{ internData ? internData.length : 0 }} Interns..
+  </div>
+</ng-template>
 </p-table>
+</div>
 
 

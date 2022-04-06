@@ -1,5 +1,6 @@
 import { coerceStringArray } from '@angular/cdk/coercion';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Intern } from 'src/app/model/Intern';
 import { InternService } from 'src/app/services/intern.service';
@@ -13,14 +14,14 @@ import Swal from 'sweetalert2';
   providers: [MessageService],
 })
 export class InternTabComponent implements OnInit {
-  
+  updateForm: FormGroup;
   internData!:Intern[];
   intern!:Intern;
   internTable=true;
   internDetails=false;
   checked1: boolean = true;
   loader: boolean = true;
-
+  submitted1 = false;
   submitted?: boolean;
   internDialogue?: boolean;
  
@@ -29,7 +30,7 @@ export class InternTabComponent implements OnInit {
   
 
 
-  constructor(private internservice:InternService,private messageService:MessageService,private userService:UserService) { }
+  constructor(private formBuilder: FormBuilder, private internservice:InternService,private messageService:MessageService,private userService:UserService) { }
 
   ngOnInit(): void {
 
@@ -41,8 +42,22 @@ export class InternTabComponent implements OnInit {
       
     });
 
+    this.updateForm = this.formBuilder.group({
+   
+    
+      name: ['', [Validators.required, Validators.minLength(6)]],
+      location: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      mobile: ['', [Validators.required, Validators.pattern("[\\d]{10}")]],
+      email: ['', [Validators.required, Validators.pattern("[A-Za-z0-9_.]+[@][a-z]+[.][a-z]{2,3}")]],
+      projectname: ['', [Validators.required]],
+      mentor: ['', [Validators.required]],
+      });
+
+
 
   }
+  get f1() { return this.updateForm.controls; }
 
   deleteIntern(id:any)
   {
@@ -67,6 +82,12 @@ export class InternTabComponent implements OnInit {
   //updating intern......
   updateIntern() {
     this.submitted = true;
+    this.submitted1 = true;
+     if (this.updateForm.invalid) {
+      return;
+  }
+  if(this.submitted1)
+  {
 
     if (this.intern.id) {
       console.log("id>.." + this.intern.id)
@@ -96,6 +117,7 @@ export class InternTabComponent implements OnInit {
       console.log("intern not added");
       this.internDialogue = false;
   }
+}
 }
 
   //for searching 

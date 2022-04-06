@@ -19,7 +19,7 @@ export class LeaveTabComponent implements OnInit {
 
   empId = '';
   name = '';
-
+  invalidDates: Array<Date>
   selectedLeave: any;
 
   submitted?: boolean;
@@ -42,9 +42,10 @@ export class LeaveTabComponent implements OnInit {
     this.types = [
       { type: 'Casual' },
       { type: 'Earned' },
-      { type: 'Annual' },
-      { type: 'Medical' },
+     { type: 'Medical' }
     ];
+
+  
   }
 
   ngOnInit(): void {

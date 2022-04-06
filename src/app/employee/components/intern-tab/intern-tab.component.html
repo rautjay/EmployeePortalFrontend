@@ -1,10 +1,12 @@
 
 <p-dialog
+
 [(visible)]="internDialogue"
 [style]="{ width: '700px' }"
 header="INTERN DETAILS"
 [modal]="true"
 styleClass="p-fluid"
+class="custom-dialog"
 >
 <ng-template pTemplate="content">
   <p-card>
@@ -63,6 +65,7 @@ styleClass="p-fluid"
 
 <p-table
   #dt
+  class="custom-table2"
   [value]="internData"
   [rows]="5"
   [paginator]="true"
@@ -80,17 +83,18 @@ styleClass="p-fluid"
 >
   <ng-template pTemplate="caption">
     <div class="p-d-flex p-ai-center p-jc-between">
-      <h2 class="p-m-0">Intern List
-      <span style="float: right;" class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filterGlobal(getEventValue($event), 'contains')"
-          placeholder="Search..."
-        />
-      </span>
-    </h2>
+      <div class="div1"><h3 class="div1-h2" > Intern List</h3>
+
+        <span class="p-input-icon-left">
+          <i class="pi pi-search" style="color: white !important;"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal(getEventValue($event), 'contains')"
+            placeholder="Search..."
+            class="p-inputtext-sm"
+          />
+        </span></div>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
@@ -112,13 +116,13 @@ styleClass="p-fluid"
        <td>{{ element.location }}</td>
       <td>{{ element.mentor}}</td>
       <td>
-        <button
-          pButton
-          pRipple
-          icon="pi pi-info"
-          class="p-button-rounded p-button-success p-mr-2"
-          (click)="editIntern(element)"
-        ></button>
+    <div class="btn">    <button
+      pButton
+      pRipple
+      icon="pi pi-info"
+      class="p-button-rounded p-button-success p-mr-2"
+      (click)="editIntern(element)"
+    ></button></div>
 
        
       </td>

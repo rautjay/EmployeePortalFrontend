@@ -16,13 +16,12 @@ import {SelectButtonModule} from 'primeng/selectbutton';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
-
 import {PanelModule} from 'primeng/panel';
 import {AccordionModule} from 'primeng/accordion';
 import {TabViewModule} from 'primeng/tabview';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {CalendarModule} from 'primeng/calendar';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 import {FieldsetModule} from 'primeng/fieldset';
@@ -32,8 +31,10 @@ import {ImageModule} from 'primeng/image';
 import {ListboxModule} from 'primeng/listbox';
 import {DropdownModule} from 'primeng/dropdown';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
-
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {DividerModule} from 'primeng/divider';
+import {ConfirmationService} from 'primeng/api';
+
 
 
 
@@ -71,7 +72,10 @@ import {DividerModule} from 'primeng/divider';
     ImageModule,
     ListboxModule,
     DropdownModule,
-    DividerModule
+    DividerModule,
+    ConfirmPopupModule,
+    ReactiveFormsModule
+ 
     
  
 
@@ -114,7 +118,9 @@ import {DividerModule} from 'primeng/divider';
     ListboxModule,
     DropdownModule,
     DynamicDialogModule,
-    DividerModule
+    DividerModule,
+    ConfirmPopupModule,
+    ReactiveFormsModule
     
   ]
 })

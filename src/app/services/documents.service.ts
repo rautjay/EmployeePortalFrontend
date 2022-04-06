@@ -76,4 +76,27 @@ export class DocumentsService {
      
     //      return this.http.request(req);
     //    }
+
+
+    uploadDetailsForm(file: File,id:any) {
+      const formData:any = new FormData();
+     
+         formData.append('file', file);
+    
+         const req = new HttpRequest('POST', `${environment.baseUrl}/details/upload/${id}`, formData,{
+           responseType: 'json',
+         
+         });
+     
+         return this.http.request(req);
+       }
+
+       downloadDetailsForm(filename: string){
+        return this.http.get(`${environment.baseUrl}/details/download/${filename}`, {
+          reportProgress: true,
+          // observe: 'events',
+          responseType: 'blob'
+        });
+      }
+  
 }

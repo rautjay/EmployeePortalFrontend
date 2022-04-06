@@ -9,6 +9,10 @@ import Swal from 'sweetalert2';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoginService } from 'src/app/services/login.service';
 import { documents } from 'src/app/model/documents';
+import { UserService } from 'src/app/services/user.service';
+import { ComDocumentService } from 'src/app/services/com-document.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-emp-dashboard',
@@ -17,16 +21,19 @@ import { documents } from 'src/app/model/documents';
   providers: [MessageService],
 })
 export class EmpDashboardComponent implements OnInit {
- 
+  
+  updateForm: FormGroup;
+  displayBasic = true;
   documents:documents[]=[];
-  employee:Employee;
+  employee?:Employee;
   empId = "";
   message = '';
-  errorMsg = '';
+  errorMsg:string;
   selectedFiles?: FileList;
   currentFile?: File;
   profilePic="";
-  constructor(private empService:EmployeeService, private docService:DocumentsService, private messageService:MessageService, private loginService:LoginService) { }
+  submitted = false;
+  constructor( private docsService:DocumentsService, private formBuilder: FormBuilder,private comDocService:ComDocumentService,private empService:EmployeeService, private docService:DocumentsService, private messageService:MessageService, private loginService:LoginService, private userService:UserService) { }
      
   ngOnInit(): void {
    
@@ -36,6 +43,7 @@ export class EmpDashboardComponent implements OnInit {
       this.profilePic = user.employee.profilePic;
       
     this.employee = user.employee
+
    })
  
 
@@ -43,10 +51,24 @@ export class EmpDashboardComponent implements OnInit {
      this.documents = data.documents;
    })
 
+   this.updateForm = this.formBuilder.group({
+   
+    name:['',[Validators.required,Validators.pattern("[a-zA-Z ]{2,30}")]],
+    mobile: ['', [Validators.required, Validators.pattern("[\\d]{10}")]],
+    email: ['', [Validators.required, Validators.pattern("[A-Za-z0-9_.]+[@][a-z]+[.][a-z]{2,3}")]],
+    currentAddress: ['', [Validators.required]],
+    permanentAddress: ['', [Validators.required]],
+  username: ['', [Validators.required]],
+  designation: ['', [Validators.required]],
+  location: ['', [Validators.required]],
+    });
+
  }
+ get f() { return this.updateForm.controls; }
 
      formSubmit(employee:Employee)
      {
+   
        this.employee = {...employee}
         
        if (this.empId) {
@@ -73,6 +95,8 @@ export class EmpDashboardComponent implements OnInit {
           }
         });
     }
+
+
      }
 
 
@@ -95,7 +119,13 @@ export class EmpDashboardComponent implements OnInit {
             (event: any) => {
              
               this.ngOnInit()
-               alert("file uploaded");
+              Swal.fire({
+                position:'top',
+               icon: 'success',
+               title: 'File Uploaded!!',
+               showConfirmButton: false,
+               timer: 1500
+             })
             
             });
             (err: any) => {
@@ -111,7 +141,7 @@ export class EmpDashboardComponent implements OnInit {
     }
      
     downloadFile(filename: string): void {
-      this.docService.download(filename).subscribe((event) => {
+      this.comDocService.download(filename).subscribe((event) => {
         saveAs(event, filename);
       });
       (error: HttpErrorResponse) => {
@@ -119,5 +149,62 @@ export class EmpDashboardComponent implements OnInit {
       };
     }
   
+
+    uploadDetailsForm(){
+      console.log("file upload.....................")
+      this.errorMsg = '';
   
-}
+      if (this.selectedFiles) {
+        const file: File | null = this.selectedFiles.item(0);
+  
+        if (file) {
+          this.currentFile = file;
+  
+          this.docService.uploadDetailsForm(this.currentFile,this.empId).subscribe(
+            (event: any) => {
+              this.ngOnInit();
+              Swal.fire({
+                position:'top',
+               icon: 'success',
+               title: 'File Uploaded!!',
+               showConfirmButton: false,
+               timer: 1500
+             })
+            },
+            (err: any) => {
+              console.log(err);
+              
+  
+              this.currentFile = undefined;
+            }
+          );
+        }
+  
+        this.selectedFiles = undefined;
+      }
+    }
+
+     downloadDetailsForm(filename:string):void
+     {
+      this.docService.downloadDetailsForm(filename).subscribe((event) => {
+        saveAs(event, filename);
+      });
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      };
+     }
+
+     changePassword(emp){
+
+      this.userService.changePassword(emp.oldPassword,emp.newPassword).subscribe((data)=>{
+        alert("password changed!!")
+      })
+     }
+
+     showBasicDialog() {
+      this.displayBasic = true;
+  }
+
+    }
+  
+

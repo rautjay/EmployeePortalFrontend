@@ -7,6 +7,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-emp-tab',
@@ -16,6 +17,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class EmpTabComponent implements OnInit {
 
+  updateForm: FormGroup;
   employeeData!:Employee[];
   employee!:Employee;
   empTable=true;
@@ -25,8 +27,12 @@ export class EmpTabComponent implements OnInit {
   documents:documents[];
   submitted?: boolean;
   employeeDialogue?: boolean;
+  selectedFiles?: FileList;
+  currentFile?: File;
+  errorMsg: string;
+  submitted1 = false;
 
-  constructor(private empService:EmployeeService,private messageService:MessageService, private docsService:DocumentsService) { }
+  constructor(private empService:EmployeeService,private messageService:MessageService, private docsService:DocumentsService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
       
@@ -38,7 +44,23 @@ export class EmpTabComponent implements OnInit {
     })
 
 
+    this.updateForm = this.formBuilder.group({
+   
+    
+      name: ['', [Validators.required]],
+      location: ['', [Validators.required]],
+      designation: ['', [Validators.required]],
+      mobile: ['', [Validators.required, Validators.pattern("[\\d]{10}")]],
+      email: ['', [Validators.required, Validators.pattern("[A-Za-z0-9_.]+[@][a-z]+[.][a-z]{2,3}")]],
+      department: ['', [Validators.required]],
+      reportingTo: ['', [Validators.required]],
+      });
+
+
+
+
   }
+  get f() { return this.updateForm.controls; }
 
   deleteEmployee(id:any)
   {
@@ -63,6 +85,13 @@ export class EmpTabComponent implements OnInit {
   //updating intern......
   updateEmployee() {
     this.submitted = true;
+    this.submitted1 = true;
+   
+    if (this.updateForm.invalid) {
+      return;
+  }
+  if(this.submitted1)
+  {
 
     if (this.employee.id) {
       console.log("id>.." + this.employee.id)
@@ -91,6 +120,7 @@ export class EmpTabComponent implements OnInit {
       console.log("intern not added");
       this.employeeDialogue = false;
   }
+}
 }
 
   //for searching 
@@ -125,8 +155,46 @@ export class EmpTabComponent implements OnInit {
     };
   }
 
-   
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
+  }
 
-}
+   uploadDetailsForm(id:any){
+    console.log("file upload.....................")
+    this.errorMsg = '';
+
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+
+      if (file) {
+        this.currentFile = file;
+
+        this.docsService.uploadDetailsForm(this.currentFile,id).subscribe(
+          (event:any) => {
+            this.ngOnInit();
+            
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'File Uploaded!!',
+            });
+            
+           
+          },
+          (error:any) => {
+            console.log(error);
+
+            this.currentFile = undefined;
+          }
+        );
+      }
+
+      this.selectedFiles = undefined;
+    }
+  }
+
+   }
+
+
 
 

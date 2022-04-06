@@ -12,6 +12,7 @@ import {TableModule} from 'primeng/table';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import {TableModule} from 'primeng/table';
     HttpClientModule,
     CardModule,
     TableModule
+
     
   ],
   providers: [AuthInterceptorProviders],

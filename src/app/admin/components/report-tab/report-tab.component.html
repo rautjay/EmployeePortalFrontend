@@ -1,5 +1,8 @@
+<br>
+<div   class="custom-table2" >
 
-<p-table
+  <p-table
+  
   #dt
   [value]="reportData"
   [rows]="5"
@@ -18,17 +21,18 @@
 >
   <ng-template pTemplate="caption">
     <div class="p-d-flex p-ai-center p-jc-between">
-      <h2 class="p-m-0">Report List
-      <span style="float: right;" class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input
-          pInputText
-          type="text"
-          (input)="dt.filterGlobal(getEventValue($event), 'contains')"
-          placeholder="Search..."
-        />
-      </span>
-    </h2>
+      <div class="div1"><h3 class="div1-h2" >Report List</h3>
+
+        <span class="p-input-icon-left">
+          <i class="pi pi-search" style="color: white !important;"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal(getEventValue($event), 'contains')"
+            placeholder="Search..."
+            class="p-inputtext-sm"
+          />
+        </span></div>
     </div>
   </ng-template>
   <ng-template pTemplate="header">
@@ -56,7 +60,7 @@
         </td>
          <td> <div class="col-12 md:col-4">
           <div class="p-inputgroup">
-              <input style="color: rgb(165, 87, 218);" name= "actionTaken" type="text" pInputText placeholder="Enter Action Here!!"  [(ngModel)]="element.actionTaken">   
+              <input style="background-color: #f5f3f4e7   !important; color: black !important;" name= "actionTaken" type="text" pInputText placeholder="Enter Action Here!!"  [(ngModel)]="element.actionTaken">   
               <button (click)="updateReport(element)" type="button" pButton pRipple icon="pi pi-check" styleClass="p-button-warn"></button>      
           </div>
       </div></td>
@@ -65,7 +69,10 @@
   </ng-template>
   <ng-template pTemplate="summary">
     <div class="p-d-flex p-ai-center p-jc-between">
-      In total there are {{ reportData ? reportData.length : 0 }} Employees..
+      In total there are {{ reportData ? reportData.length : 0 }} Reports of Employees..
     </div>
   </ng-template>
 </p-table>
+
+</div>
+<br>
